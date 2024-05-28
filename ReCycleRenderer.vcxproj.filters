@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{7149eeed-538a-4efc-9226-727a52510bb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{a1ae09d7-07af-42ed-936b-977be544dc04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals">
+      <UniqueIdentifier>{dfbf5ead-535b-4d8a-b5ce-f44d004db32c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Vulkan">
+      <UniqueIdentifier>{1b2ca6b4-fff0-4dc3-9793-e475b796305a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Vulkan">
+      <UniqueIdentifier>{e6d9f839-9f63-413f-b33a-3a7c0a45ccee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Code\Source\Application.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\Renderer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\Window.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\VulkanInstance.cpp">
+      <Filter>Source\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\ValidationLayers.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Code\Include\Application.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Renderer.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Window.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\VulkanInstance.hpp">
+      <Filter>Include\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Helper.hpp">
+      <Filter>Include\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\ValidationLayers.hpp" />
+  </ItemGroup>
+</Project>
