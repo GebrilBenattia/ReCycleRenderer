@@ -9,7 +9,7 @@ void Framebuffers::CreateFramebuffers(VkDevice& _LogicalDevice, std::vector<VkFr
         VkFramebufferCreateInfo framebufferInfo{};
         framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
         framebufferInfo.renderPass = _RenderPass;
-        framebufferInfo.attachmentCount = _Attachements.size();
+        framebufferInfo.attachmentCount = static_cast<uint32_t>(_Attachements.size());
         framebufferInfo.pAttachments = _Attachements.data()->data();
         framebufferInfo.width = _Extent.width;
         framebufferInfo.height = _Extent.height;

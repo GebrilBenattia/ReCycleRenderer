@@ -153,6 +153,9 @@
     <ClCompile Include="Code\Source\LogicalDevice.cpp" />
     <ClCompile Include="Code\Source\VulkanSurface.cpp" />
     <ClCompile Include="Code\Source\Swapchain.cpp" />
+    <ClCompile Include="Code\Source\Framebuffers.cpp" />
+    <ClCompile Include="Code\Source\CommandPool.cpp" />
+    <ClCompile Include="Code\Source\CommandBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp" />
@@ -166,6 +169,9 @@
     <ClInclude Include="Code\Include\LogicalDevice.hpp" />
     <ClInclude Include="Code\Include\VulkanSurface.hpp" />
     <ClInclude Include="Code\Include\Swapchain.hpp" />
+    <ClInclude Include="Code\Include\Framebuffers.hpp" />
+    <ClInclude Include="Code\Include\CommandPool.hpp" />
+    <ClInclude Include="Code\Include\CommandBuffer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
