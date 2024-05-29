@@ -26,4 +26,3 @@ public:
     static std::vector<const char*> GetRequiredExtensions();
     static bool CheckValidationLayerSupport();
 };
-

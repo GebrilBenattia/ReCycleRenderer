@@ -30,4 +30,3 @@ public:
     static void PickPhysicalDevice(VkInstance& _Instance, VkPhysicalDevice& _PhysicalDevice, VkSurfaceKHR& _Surface);
     static QueueFamilyIndices FindQueueFamilies(VkPhysicalDevice _PhysicalDevice, VkSurfaceKHR& _Surface);
 };
-

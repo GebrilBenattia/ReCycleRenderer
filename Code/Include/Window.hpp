@@ -18,4 +18,3 @@ public:
 	void Create();
 	void Destroy();
 };
-
