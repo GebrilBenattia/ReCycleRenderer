@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <CommandBuffer.hpp>
 
-void Synchronisation::DrawFrame(VkDevice& _LogicalDevice, VkSwapchainKHR& _Swapchain, VkCommandBuffer& _CmdBuffer, VkFence& _Fence, VkSemaphore& _ImageAvailableSemaphore, VkSemaphore& _RenderFinishedSemaphore, VkQueue& _GraphicsQueue, VkQueue& _PresentQueue)
+void Synchronisation::DrawFrame(VkDevice& _LogicalDevice, VkSwapchainKHR& _Swapchain, VkCommandBuffer& _CmdBuffer, VkFence& _Fence, VkSemaphore& _ImageAvailableSemaphore, VkSemaphore& _RenderFinishedSemaphore, VkQueue& _GraphicsQueue, VkQueue& _PresentQueue, VkRenderPass& _RenderPass, std::vector<VkFramebuffer>& _Framebuffers, VkExtent2D& _Extent, VkPipeline& _Pipeline)
 {
     vkWaitForFences(_LogicalDevice, 1, &_Fence, VK_TRUE, UINT64_MAX);
     vkResetFences(_LogicalDevice, 1, &_Fence);
@@ -11,7 +11,7 @@ void Synchronisation::DrawFrame(VkDevice& _LogicalDevice, VkSwapchainKHR& _Swapc
     vkAcquireNextImageKHR(_LogicalDevice, _Swapchain, UINT64_MAX, _ImageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex);
 
     vkResetCommandBuffer(_CmdBuffer, /*VkCommandBufferResetFlagBits*/ 0);
-    //CommandBuffer::RecordCommandBuffer(_CmdBuffer, imageIndex);
+    CommandBuffer::RecordCommandBuffer(_CmdBuffer, imageIndex, _RenderPass, _Framebuffers, _Extent, _Pipeline);
 
     VkSubmitInfo submitInfo{};
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
