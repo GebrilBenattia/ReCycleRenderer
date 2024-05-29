@@ -33,7 +33,13 @@
     <ClCompile Include="Code\Source\VulkanInstance.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\ValidationLayers.cpp" />
+    <ClCompile Include="Code\Source\ValidationLayers.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\PhysicalDevice.cpp" />
+    <ClCompile Include="Code\Source\LogicalDevice.cpp" />
+    <ClCompile Include="Code\Source\VulkanSurface.cpp" />
+    <ClCompile Include="Code\Source\Swapchain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp">
@@ -51,6 +57,13 @@
     <ClInclude Include="Code\Include\Helper.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\ValidationLayers.hpp" />
+    <ClInclude Include="Code\Include\ValidationLayers.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\PhysicalDevice.hpp" />
+    <ClInclude Include="Code\Include\LogicalDevice.hpp" />
+    <ClInclude Include="Code\Include\VulkanSurface.hpp" />
+    <ClInclude Include="Code\Include\Swapchain.hpp" />
+    <ClInclude Include="Code\Include\VulkanImages.hpp" />
   </ItemGroup>
 </Project>

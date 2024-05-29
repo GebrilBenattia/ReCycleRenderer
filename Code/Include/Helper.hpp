@@ -1,10 +1,11 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
+#include <iostream>
 
 namespace Helper
 {
-	VkApplicationInfo ApplicationInfo(const char* _ApplicationName, const uint32_t _ApplicationVersion, const char* _EngineName, const uint32_t _EngineVersion, const uint32_t _APIVersion)
+	inline VkApplicationInfo ApplicationInfo(const char* _ApplicationName, const uint32_t _ApplicationVersion, const char* _EngineName, const uint32_t _EngineVersion, const uint32_t _APIVersion)
 	{
         VkApplicationInfo appInfo{};
         appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -17,7 +18,7 @@ namespace Helper
         return appInfo;
 	}
 
-    VkInstanceCreateInfo InstanceInfo(const VkApplicationInfo& _AppInfo)
+    inline VkInstanceCreateInfo InstanceInfo(const VkApplicationInfo& _AppInfo)
     {
         VkInstanceCreateInfo createInfo{};
         createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;

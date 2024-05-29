@@ -8,13 +8,22 @@ class Renderer
 {
 private:
 
+	Window* window;
 	VkInstance instance;
     VkDebugUtilsMessengerEXT debugMessenger;
-	VkPhysicalDevice physicalDevice;
+	VkSurfaceKHR surface;
+	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+	VkDevice device;
+	VkQueue graphicsQueue;
+	VkQueue presentQueue;
+
+	VkSwapchainKHR swapchain;
+	std::vector<VkImage> swapchainImages;
+	VkFormat swapchainImageFormat;
+	VkExtent2D swapchainExtent;
+	std::vector<VkImageView> swapchainImageViews;
 
 public:
-
-	Window* window;
 
 	void Init();
 	void InitVulkan();
