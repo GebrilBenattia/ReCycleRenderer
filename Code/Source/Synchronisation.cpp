@@ -3,7 +3,7 @@
 #include <CommandBuffer.hpp>
 #include <Swapchain.hpp>
 
-void Synchronisation::DrawFrame(VkPhysicalDevice& _PhysicalDevice, VkDevice& _LogicalDevice, uint32_t& _CurrentFrame, int _MaxFramesInFlight, VkSwapchainKHR& _Swapchain, std::vector<VkCommandBuffer>& _CmdBuffers, std::vector<VkFence>& _Fences, std::vector<VkSemaphore>& _ImageAvailableSemaphores, std::vector<VkSemaphore>& _RenderFinishedSemaphores, VkQueue& _GraphicsQueue, VkQueue& _PresentQueue, VkRenderPass& _RenderPass, std::vector<VkFramebuffer>& _Framebuffers, VkExtent2D& _Extent, VkPipeline& _Pipeline)
+void Synchronisation::DrawFrame(VkPhysicalDevice& _PhysicalDevice, VkDevice& _LogicalDevice, uint32_t& _CurrentFrame, int _MaxFramesInFlight, VkSwapchainKHR& _Swapchain, std::vector<VkCommandBuffer>& _CmdBuffers, std::vector<VkFence>& _Fences, std::vector<VkSemaphore>& _ImageAvailableSemaphores, std::vector<VkSemaphore>& _RenderFinishedSemaphores, VkQueue& _GraphicsQueue, VkQueue& _PresentQueue, VkRenderPass& _RenderPass, std::vector<VkFramebuffer>& _Framebuffers, VkExtent2D& _Extent, VkPipeline& _Pipeline, VkSurfaceKHR& _Surface, std::vector<VkImage>& _SwapchainImages, std::vector<VkImageView>& _SwapchainImageViews, VkFormat& _SwapchainImageFormat, Window& _Window)
 {
     vkWaitForFences(_LogicalDevice, 1, &_Fences[_CurrentFrame], VK_TRUE, UINT64_MAX);
 
@@ -11,7 +11,7 @@ void Synchronisation::DrawFrame(VkPhysicalDevice& _PhysicalDevice, VkDevice& _Lo
     VkResult result = vkAcquireNextImageKHR(_LogicalDevice, _Swapchain, UINT64_MAX, _ImageAvailableSemaphores[_CurrentFrame], VK_NULL_HANDLE, &imageIndex);
 
     if (result == VK_ERROR_OUT_OF_DATE_KHR) {
-        Swapchain::RecreateSwapchain(_PhysicalDevice, _LogicalDevice, , , _Swapchain, , , _Extent, , _Framebuffers, _RenderPass);
+        Swapchain::RecreateSwapchain(_PhysicalDevice, _LogicalDevice, _Surface, _Window.window, _Swapchain, _SwapchainImages, _SwapchainImageFormat, _Extent, _SwapchainImageViews, _Framebuffers, _RenderPass);
         return;
     }
     else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
@@ -57,9 +57,9 @@ void Synchronisation::DrawFrame(VkPhysicalDevice& _PhysicalDevice, VkDevice& _Lo
 
     result = vkQueuePresentKHR(_PresentQueue, &presentInfo);
 
-    if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
-        framebufferResized = false;
-        //RecreateSwapChain();
+    if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || _Window.framebufferResized) {
+        _Window.framebufferResized = false;
+        Swapchain::RecreateSwapchain(_PhysicalDevice, _LogicalDevice, _Surface, _Window.window, _Swapchain, _SwapchainImages, _SwapchainImageFormat, _Extent, _SwapchainImageViews, _Framebuffers, _RenderPass);
     }
     else if (result != VK_SUCCESS) {
         throw std::runtime_error("failed to present swap chain image!");

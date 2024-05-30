@@ -52,7 +52,7 @@ void Renderer::Update()
     while (!glfwWindowShouldClose(window->window)) {
         glfwPollEvents();
         
-        Synchronisation::DrawFrame(device, currentFrame, MAX_FRAMES_IN_FLIGHT, swapchain, drawCommandBuffers, inFlightFences, imageAvailableSemaphores, renderFinishedSemaphores, graphicsQueue, presentQueue, renderPass, swapchainFramebuffers, swapchainExtent, graphicsPipeline);
+        Synchronisation::DrawFrame(physicalDevice, device, currentFrame, MAX_FRAMES_IN_FLIGHT, swapchain, drawCommandBuffers, inFlightFences, imageAvailableSemaphores, renderFinishedSemaphores, graphicsQueue, presentQueue, renderPass, swapchainFramebuffers, swapchainExtent, graphicsPipeline, surface, swapchainImages, swapchainImageViews, swapchainImageFormat, *window);
     }
 
     vkDeviceWaitIdle(device);

@@ -152,6 +152,8 @@ void Swapchain::RecreateSwapchain(VkPhysicalDevice& _PhysicalDevice, VkDevice& _
 
     vkDeviceWaitIdle(_LogicalDevice);
 
+    DestroySwapchain(_LogicalDevice, _Swapchain, _SwapchainImageViews, _SwapchainFramebuffers);
+
     CreateSwapchain(_PhysicalDevice, _LogicalDevice, _Surface, _Window, _Swapchain, _SwapchainImages, _SwapchainImageFormat, _SwapchainExtent);
     CreateSwapchainImageViews(_LogicalDevice, _SwapchainImages, _SwapchainImageFormat, _SwapchainImageViews);
     CreateSwapchainFramebuffers(_LogicalDevice, _SwapchainFramebuffers, _SwapchainImageViews, _SwapchainImageViews.size(), _RenderPass, _SwapchainExtent);

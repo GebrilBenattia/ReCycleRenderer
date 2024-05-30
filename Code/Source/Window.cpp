@@ -2,7 +2,7 @@
 #include <Renderer.hpp>
 
 Window::Window()
-	:width(600), height(600)
+	:width(900), height(700)
 {
 	Create();
 }
