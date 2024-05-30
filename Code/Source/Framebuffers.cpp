@@ -1,16 +1,20 @@
 #include "Framebuffers.hpp"
 #include <stdexcept>
 
-void Framebuffers::CreateFramebuffers(VkDevice& _LogicalDevice, std::vector<VkFramebuffer> _Framebuffers, std::vector<std::vector<VkImageView>>& _Attachements, size_t _ViewCount, VkRenderPass& _RenderPass, VkExtent2D _Extent)
+void Framebuffers::CreateFramebuffers(VkDevice& _LogicalDevice, std::vector<VkFramebuffer>& _Framebuffers, std::vector<VkImageView>& _Attachement0, size_t _ViewCount, VkRenderPass& _RenderPass, VkExtent2D _Extent)
 {
     _Framebuffers.resize(_ViewCount);
 
     for (size_t i = 0; i < _ViewCount; i++) {
+        VkImageView attachements[] = {
+            _Attachement0[i]
+        };
+
         VkFramebufferCreateInfo framebufferInfo{};
         framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
         framebufferInfo.renderPass = _RenderPass;
-        framebufferInfo.attachmentCount = static_cast<uint32_t>(_Attachements.size());
-        framebufferInfo.pAttachments = _Attachements.data()->data();
+        framebufferInfo.attachmentCount = 1;
+        framebufferInfo.pAttachments = attachements;
         framebufferInfo.width = _Extent.width;
         framebufferInfo.height = _Extent.height;
         framebufferInfo.layers = 1;

@@ -64,6 +64,8 @@
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Synchronisation.cpp" />
+    <ClCompile Include="Code\Source\VulkanShader.cpp" />
+    <ClCompile Include="Code\Source\VulkanPipeline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp">
@@ -115,5 +117,7 @@
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Synchronisation.hpp" />
+    <ClInclude Include="Code\Include\VulkanShader.hpp" />
+    <ClInclude Include="Code\Include\VulkanPipeline.hpp" />
   </ItemGroup>
 </Project>

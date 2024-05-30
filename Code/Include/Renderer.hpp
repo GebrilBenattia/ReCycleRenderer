@@ -4,6 +4,8 @@
 #include <Window.hpp>
 #include <vector>
 
+#define MAX_FRAMES_IN_FLIGHT 2
+
 class Renderer
 {
 private:
@@ -22,6 +24,22 @@ private:
 	VkFormat swapchainImageFormat;
 	VkExtent2D swapchainExtent;
 	std::vector<VkImageView> swapchainImageViews;
+
+	VkRenderPass renderPass;
+	VkPipelineLayout pipelineLayout;
+	VkPipeline graphicsPipeline;
+
+	std::vector<VkFramebuffer> swapchainFramebuffers;
+
+	VkCommandPool commandPool;
+
+	std::vector<VkCommandBuffer> drawCommandBuffers;
+
+	std::vector<VkSemaphore> imageAvailableSemaphores;
+	std::vector<VkSemaphore> renderFinishedSemaphores;
+	std::vector<VkFence> inFlightFences;
+	uint32_t currentFrame = 0;
+
 
 public:
 

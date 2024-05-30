@@ -1,4 +1,5 @@
 #include "Window.hpp"
+#include <Renderer.hpp>
 
 Window::Window()
 	:width(600), height(600)
@@ -17,13 +18,20 @@ void Window::Create()
 	glfwInit();
 
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 	window = glfwCreateWindow(width, height, "ReCycleRenderer", nullptr, nullptr);
+	glfwSetWindowUserPointer(window, this);
+	glfwSetFramebufferSizeCallback(window, FramebufferResizeCallback);
 }
 
 void Window::Destroy()
 {
 	glfwDestroyWindow(window);
 	glfwTerminate();
+}
+
+void Window::FramebufferResizeCallback(GLFWwindow* window, int width, int height)
+{
+	auto renderer = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+	renderer->framebufferResized = true;
 }

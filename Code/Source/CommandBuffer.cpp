@@ -14,6 +14,24 @@ void CommandBuffer::CreateCommandBuffer(VkDevice& _LogicalDevice, VkCommandPool&
     }
 }
 
+void CommandBuffer::CreateCommandBuffers(VkDevice& _LogicalDevice, VkCommandPool& _CmdPool, std::vector<VkCommandBuffer>& _CmdBuffers, int _FramesInFlightCount)
+{
+    _CmdBuffers.resize(_FramesInFlightCount);
+
+    VkCommandBufferAllocateInfo allocInfo{};
+    allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    allocInfo.commandPool = _CmdPool;
+    allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    allocInfo.commandBufferCount = static_cast<uint32_t>(_CmdBuffers.size());
+
+
+    for (size_t i = 0; i < _FramesInFlightCount; i++) {
+        if (vkAllocateCommandBuffers(_LogicalDevice, &allocInfo, &_CmdBuffers[i]) != VK_SUCCESS) {
+            throw std::runtime_error("failed to allocate command buffers!");
+        }
+    }
+}
+
 void CommandBuffer::RecordCommandBuffer(VkCommandBuffer& _CmdBuffer, uint32_t _ImageIndex, VkRenderPass& _RenderPass, std::vector<VkFramebuffer>& _Framebuffers, VkExtent2D& _Extent, VkPipeline& _Pipeline)
 {
     VkCommandBufferBeginInfo beginInfo{};
@@ -52,7 +70,7 @@ void CommandBuffer::RecordCommandBuffer(VkCommandBuffer& _CmdBuffer, uint32_t _I
     scissor.extent = _Extent;
     vkCmdSetScissor(_CmdBuffer, 0, 1, &scissor);
 
-    //vkCmdDraw(_CmdBuffer, 3, 1, 0, 0);
+    vkCmdDraw(_CmdBuffer, 3, 1, 0, 0);
 
     //DRAW CALLS
 

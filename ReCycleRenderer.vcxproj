@@ -159,6 +159,8 @@
     <ClCompile Include="Code\Source\VulkanSemaphore.cpp" />
     <ClCompile Include="Code\Source\VulkanFence.cpp" />
     <ClCompile Include="Code\Source\Synchronisation.cpp" />
+    <ClCompile Include="Code\Source\VulkanShader.cpp" />
+    <ClCompile Include="Code\Source\VulkanPipeline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp" />
@@ -178,6 +180,8 @@
     <ClInclude Include="Code\Include\VulkanSemaphore.hpp" />
     <ClInclude Include="Code\Include\VulkanFence.hpp" />
     <ClInclude Include="Code\Include\Synchronisation.hpp" />
+    <ClInclude Include="Code\Include\VulkanShader.hpp" />
+    <ClInclude Include="Code\Include\VulkanPipeline.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
