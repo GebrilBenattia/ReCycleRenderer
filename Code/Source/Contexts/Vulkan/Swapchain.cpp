@@ -4,6 +4,8 @@
 #include <PhysicalDevice.hpp>
 #include <VulkanImages.hpp>
 #include <Framebuffers.hpp>
+#include <Renderer.hpp>
+#include <VulkanContext.hpp>
 
 VkSurfaceFormatKHR Swapchain::ChooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats)
 {
@@ -27,14 +29,16 @@ VkPresentModeKHR Swapchain::ChooseSwapPresentMode(const std::vector<VkPresentMod
     return VK_PRESENT_MODE_FIFO_KHR;
 }
 
-VkExtent2D Swapchain::ChooseSwapExtent(const VkSurfaceCapabilitiesKHR& _Capabilities, GLFWwindow* _Window)
+VkExtent2D Swapchain::ChooseSwapExtent(const VkSurfaceCapabilitiesKHR& _Capabilities)
 {
+    VulkanContext* context = reinterpret_cast<VulkanContext*>(Renderer::context);
+
     if (_Capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()) {
         return _Capabilities.currentExtent;
     }
     else {
         int width, height;
-        glfwGetFramebufferSize(_Window, &width, &height);
+        glfwGetFramebufferSize(context->GetWindow().window, &width, &height);
 
         VkExtent2D actualExtent = {
             static_cast<uint32_t>(width),
@@ -48,38 +52,42 @@ VkExtent2D Swapchain::ChooseSwapExtent(const VkSurfaceCapabilitiesKHR& _Capabili
     }
 }
 
-SwapChainSupportDetails Swapchain::QuerySwapChainSupport(VkPhysicalDevice& _PhysicalDevice, VkSurfaceKHR& _Surface)
+SwapChainSupportDetails Swapchain::QuerySwapChainSupport()
 {
+    VulkanContext* context = reinterpret_cast<VulkanContext*>(Renderer::context);
+
     SwapChainSupportDetails details;
 
-    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(_PhysicalDevice, _Surface, &details.capabilities);
+    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(context->GetPhysicalDevice(), context->GetSurface(), &details.capabilities);
 
     uint32_t formatCount;
-    vkGetPhysicalDeviceSurfaceFormatsKHR(_PhysicalDevice, _Surface, &formatCount, nullptr);
+    vkGetPhysicalDeviceSurfaceFormatsKHR(context->GetPhysicalDevice(), context->GetSurface(), &formatCount, nullptr);
 
     if (formatCount != 0) {
         details.formats.resize(formatCount);
-        vkGetPhysicalDeviceSurfaceFormatsKHR(_PhysicalDevice, _Surface, &formatCount, details.formats.data());
+        vkGetPhysicalDeviceSurfaceFormatsKHR(context->GetPhysicalDevice(), context->GetSurface(), &formatCount, details.formats.data());
     }
 
     uint32_t presentModeCount;
-    vkGetPhysicalDeviceSurfacePresentModesKHR(_PhysicalDevice, _Surface, &presentModeCount, nullptr);
+    vkGetPhysicalDeviceSurfacePresentModesKHR(context->GetPhysicalDevice(), context->GetSurface(), &presentModeCount, nullptr);
 
     if (presentModeCount != 0) {
         details.presentModes.resize(presentModeCount);
-        vkGetPhysicalDeviceSurfacePresentModesKHR(_PhysicalDevice, _Surface, &presentModeCount, details.presentModes.data());
+        vkGetPhysicalDeviceSurfacePresentModesKHR(context->GetPhysicalDevice(), context->GetSurface(), &presentModeCount, details.presentModes.data());
     }
 
     return details;
 }
 
-void Swapchain::CreateSwapchain(VkPhysicalDevice& _PhysicalDevice, VkDevice& _LogicalDevice, VkSurfaceKHR& _Surface, GLFWwindow* _Window, VkSwapchainKHR& _Swapchain, std::vector<VkImage>& _SwapchainImages, VkFormat& _SwapchainImageFormat, VkExtent2D& _SwapchainExtent)
+void Swapchain::CreateSwapchain()
 {
-    SwapChainSupportDetails swapChainSupport = QuerySwapChainSupport(_PhysicalDevice, _Surface);
+    VulkanContext* context = reinterpret_cast<VulkanContext*>(Renderer::context);
+
+    SwapChainSupportDetails swapChainSupport = QuerySwapChainSupport();
 
     VkSurfaceFormatKHR surfaceFormat = ChooseSwapSurfaceFormat(swapChainSupport.formats);
     VkPresentModeKHR presentMode = ChooseSwapPresentMode(swapChainSupport.presentModes);
-    VkExtent2D extent = ChooseSwapExtent(swapChainSupport.capabilities, _Window);
+    VkExtent2D extent = ChooseSwapExtent(swapChainSupport.capabilities);
 
     uint32_t imageCount = swapChainSupport.capabilities.minImageCount + 1;
     if (swapChainSupport.capabilities.maxImageCount > 0 && imageCount > swapChainSupport.capabilities.maxImageCount) {
@@ -88,7 +96,7 @@ void Swapchain::CreateSwapchain(VkPhysicalDevice& _PhysicalDevice, VkDevice& _Lo
 
     VkSwapchainCreateInfoKHR createInfo{};
     createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
-    createInfo.surface = _Surface;
+    createInfo.surface = context->GetSurface();
 
     createInfo.minImageCount = imageCount;
     createInfo.imageFormat = surfaceFormat.format;
@@ -97,7 +105,7 @@ void Swapchain::CreateSwapchain(VkPhysicalDevice& _PhysicalDevice, VkDevice& _Lo
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
-    QueueFamilyIndices indices = PhysicalDevice::FindQueueFamilies(_PhysicalDevice, _Surface);
+    QueueFamilyIndices indices = PhysicalDevice::FindQueueFamilies(context->GetPhysicalDevice(), context->GetSurface());
     uint32_t queueFamilyIndices[] = { indices.graphicsFamily.value(), indices.presentFamily.value() };
 
     if (indices.graphicsFamily != indices.presentFamily) {
@@ -116,56 +124,64 @@ void Swapchain::CreateSwapchain(VkPhysicalDevice& _PhysicalDevice, VkDevice& _Lo
 
     createInfo.oldSwapchain = VK_NULL_HANDLE;
 
-    if (vkCreateSwapchainKHR(_LogicalDevice, &createInfo, nullptr, &_Swapchain) != VK_SUCCESS) {
+    if (vkCreateSwapchainKHR(context->GetLogicalDevice(), &createInfo, nullptr, &context->GetSwapchain()) != VK_SUCCESS) {
         throw std::runtime_error("failed to create swap chain!");
     }
 
-    vkGetSwapchainImagesKHR(_LogicalDevice, _Swapchain, &imageCount, nullptr);
-    _SwapchainImages.resize(imageCount);
-    vkGetSwapchainImagesKHR(_LogicalDevice, _Swapchain, &imageCount, _SwapchainImages.data());
+    vkGetSwapchainImagesKHR(context->GetLogicalDevice(), context->GetSwapchain(), &imageCount, nullptr);
+    context->GetSwapchainImages().resize(imageCount);
+    vkGetSwapchainImagesKHR(context->GetLogicalDevice(), context->GetSwapchain(), &imageCount, context->GetSwapchainImages().data());
 
-    _SwapchainImageFormat = surfaceFormat.format;
-    _SwapchainExtent = extent;
+    context->GetSwapchainImageFormat() = surfaceFormat.format;
+    context->GetSwapchainExtent() = extent;
 }
 
-void Swapchain::CreateSwapchainImageViews(VkDevice& _LogicalDevice, std::vector<VkImage>& _SwapchainImages, VkFormat& _SwapchainImageFormat, std::vector<VkImageView>& _SwapchainImageViews)
+void Swapchain::CreateSwapchainImageViews()
 {
-    _SwapchainImageViews.resize(_SwapchainImages.size());
+    VulkanContext* context = reinterpret_cast<VulkanContext*>(Renderer::context);
 
-    for (size_t i = 0; i < _SwapchainImages.size(); i++)
-        _SwapchainImageViews[i] = VulkanImages::CreateImageView(_LogicalDevice, _SwapchainImages[i], _SwapchainImageFormat);
+    context->GetSwapchainImageViews().resize(context->GetSwapchainImages().size());
+
+    for (size_t i = 0; i < context->GetSwapchainImages().size(); i++)
+        context->GetSwapchainImageViews()[i] = VulkanImages::CreateImageView(context->GetLogicalDevice(), context->GetSwapchainImages()[i], context->GetSwapchainImageFormat());
 }
 
-void Swapchain::CreateSwapchainFramebuffers(VkDevice& _LogicalDevice, std::vector<VkFramebuffer>& _Framebuffers, std::vector<VkImageView>& _Attachement0, size_t _ViewCount, VkRenderPass& _RenderPass, VkExtent2D _Extent)
+void Swapchain::CreateSwapchainFramebuffers()
 {
-    Framebuffers::CreateFramebuffers(_LogicalDevice, _Framebuffers, _Attachement0, _ViewCount, _RenderPass, _Extent);
+    VulkanContext* context = reinterpret_cast<VulkanContext*>(Renderer::context);
+
+    Framebuffers::CreateFramebuffers(context->GetLogicalDevice(), context->GetSwapchainFramebuffers(), context->GetSwapchainImageViews(), context->GetSwapchainImageViews().size(), context->GetRenderPass(), context->GetSwapchainExtent());
 }
 
-void Swapchain::RecreateSwapchain(VkPhysicalDevice& _PhysicalDevice, VkDevice& _LogicalDevice, VkSurfaceKHR& _Surface, GLFWwindow* _Window, VkSwapchainKHR& _Swapchain, std::vector<VkImage>& _SwapchainImages, VkFormat& _SwapchainImageFormat, VkExtent2D& _SwapchainExtent, std::vector<VkImageView>& _SwapchainImageViews, std::vector<VkFramebuffer>& _SwapchainFramebuffers, VkRenderPass& _RenderPass)
+void Swapchain::RecreateSwapchain()
 {
+    VulkanContext* context = reinterpret_cast<VulkanContext*>(Renderer::context);
+
     int width = 0, height = 0;
-    glfwGetFramebufferSize(_Window, &width, &height);
+    glfwGetFramebufferSize(context->GetWindow().window, &width, &height);
     while (width == 0 || height == 0) {
-        glfwGetFramebufferSize(_Window, &width, &height);
+        glfwGetFramebufferSize(context->GetWindow().window, &width, &height);
         glfwWaitEvents();
     }
 
-    vkDeviceWaitIdle(_LogicalDevice);
+    vkDeviceWaitIdle(context->GetLogicalDevice());
 
-    DestroySwapchain(_LogicalDevice, _Swapchain, _SwapchainImageViews, _SwapchainFramebuffers);
+    DestroySwapchain();
 
-    CreateSwapchain(_PhysicalDevice, _LogicalDevice, _Surface, _Window, _Swapchain, _SwapchainImages, _SwapchainImageFormat, _SwapchainExtent);
-    CreateSwapchainImageViews(_LogicalDevice, _SwapchainImages, _SwapchainImageFormat, _SwapchainImageViews);
-    CreateSwapchainFramebuffers(_LogicalDevice, _SwapchainFramebuffers, _SwapchainImageViews, _SwapchainImageViews.size(), _RenderPass, _SwapchainExtent);
+    CreateSwapchain();
+    CreateSwapchainImageViews();
+    CreateSwapchainFramebuffers();
 }
 
-void Swapchain::DestroySwapchain(VkDevice& _LogicalDevice, VkSwapchainKHR& _Swapchain, std::vector<VkImageView>& _SwapchainImageViews, std::vector<VkFramebuffer>& _SwapchainFramebuffers)
+void Swapchain::DestroySwapchain()
 {
-    Framebuffers::DestroyFramebuffers(_LogicalDevice, _SwapchainFramebuffers);
+    VulkanContext* context = reinterpret_cast<VulkanContext*>(Renderer::context);
 
-    for (auto imageView : _SwapchainImageViews) {
-        vkDestroyImageView(_LogicalDevice, imageView, nullptr);
+    Framebuffers::DestroyFramebuffers(context->GetLogicalDevice(), context->GetSwapchainFramebuffers());
+
+    for (auto imageView : context->GetSwapchainImageViews()) {
+        vkDestroyImageView(context->GetLogicalDevice(), imageView, nullptr);
     }
 
-    vkDestroySwapchainKHR(_LogicalDevice, _Swapchain, nullptr);
+    vkDestroySwapchainKHR(context->GetLogicalDevice(), context->GetSwapchain(), nullptr);
 }

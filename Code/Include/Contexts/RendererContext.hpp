@@ -17,6 +17,7 @@ private:
 public:
 
 	virtual void Create(std::optional<const int> _Width = std::nullopt, std::optional<const int> _Height = std::nullopt) = 0;
+	virtual void Init() = 0;
 	virtual void Update() = 0;
 	virtual void Destroy() = 0;
 };

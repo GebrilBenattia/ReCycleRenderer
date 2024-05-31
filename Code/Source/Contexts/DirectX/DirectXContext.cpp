@@ -23,7 +23,7 @@ void DirectXContext::Create(std::optional<const int> _Width, std::optional<const
 	m_Window = new Window(_Width.value_or(900), _Height.value_or(700));
 }
 
-void DirectXContext::InitDirectX()
+void DirectXContext::Init()
 {
 }
 

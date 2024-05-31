@@ -15,7 +15,7 @@ void Synchronisation::DrawFrame()
     VkResult result = vkAcquireNextImageKHR(context->GetLogicalDevice(), context->GetSwapchain(), UINT64_MAX, context->GetImageAvailableSemaphores()[context->GetCurrentFrame()], VK_NULL_HANDLE, &imageIndex);
 
     if (result == VK_ERROR_OUT_OF_DATE_KHR) {
-        Swapchain::RecreateSwapchain(context->GetPhysicalDevice(), context->GetLogicalDevice(), context->GetSurface(), context->GetWindow().window, context->GetSwapchain(), context->GetSwapchainImages(), context->GetSwapchainImageFormat(), context->GetSwapchainExtent(), context->GetSwapchainImageViews(), context->GetSwapchainFramebuffers(), context->GetRenderPass());
+        Swapchain::RecreateSwapchain();
         return;
     }
     else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
@@ -63,7 +63,7 @@ void Synchronisation::DrawFrame()
 
     if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || context->GetWindow().framebufferResized) {
         context->GetWindow().framebufferResized = false;
-        Swapchain::RecreateSwapchain(context->GetPhysicalDevice(), context->GetLogicalDevice(), context->GetSurface(), context->GetWindow().window, context->GetSwapchain(), context->GetSwapchainImages(), context->GetSwapchainImageFormat(), context->GetSwapchainExtent(), context->GetSwapchainImageViews(), context->GetSwapchainFramebuffers(), context->GetRenderPass());
+        Swapchain::RecreateSwapchain();
     }
     else if (result != VK_SUCCESS) {
         throw std::runtime_error("failed to present swap chain image!");

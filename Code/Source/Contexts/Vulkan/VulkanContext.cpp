@@ -18,7 +18,7 @@
 
 VulkanContext::VulkanContext()
 {
-	Create();
+    Create();
 }
 
 VulkanContext::VulkanContext(const int _Width, const int _Height)
@@ -37,10 +37,9 @@ void VulkanContext::Create(std::optional<const int> _Width, std::optional<const 
         delete m_Window;
     }
 	m_Window = new Window(_Width.value_or(900), _Height.value_or(700));
-	InitVulkan();
 }
 
-void VulkanContext::InitVulkan()
+void VulkanContext::Init()
 {
     VulkanInstance::Create(m_Instance);
     ValidationLayers::SetupDebugMessenger(m_Instance, m_DebugMessenger);
@@ -48,13 +47,13 @@ void VulkanContext::InitVulkan()
     PhysicalDevice::PickPhysicalDevice(m_Instance, m_PhysicalDevice, m_Surface);
     LogicalDevice::CreateLogicalDevice(m_PhysicalDevice, m_Device, m_GraphicsQueue, m_PresentQueue, m_Surface);
 
-    Swapchain::CreateSwapchain(m_PhysicalDevice, m_Device, m_Surface, m_Window->window, m_Swapchain, m_SwapchainImages, m_SwapchainImageFormat, m_SwapchainExtent);
-    Swapchain::CreateSwapchainImageViews(m_Device, m_SwapchainImages, m_SwapchainImageFormat, m_SwapchainImageViews);
+    Swapchain::CreateSwapchain();
+    Swapchain::CreateSwapchainImageViews();
 
     VulkanPipeline::CreateRenderPass(m_Device, m_SwapchainImageFormat, m_RenderPass);
     VulkanPipeline::CreateGraphicsPipeline(m_Device, "Assets/Shaders/vert.spv", "Assets/Shaders/frag.spv", m_RenderPass, m_PipelineLayout, m_GraphicsPipeline);
 
-    Swapchain::CreateSwapchainFramebuffers(m_Device, m_SwapchainFramebuffers, m_SwapchainImageViews, m_SwapchainImageViews.size(), m_RenderPass, m_SwapchainExtent);
+    Swapchain::CreateSwapchainFramebuffers();
 
     CommandPool::CreateCommandPool(m_PhysicalDevice, m_Surface, m_Device, m_CommandPool);
 
@@ -84,7 +83,7 @@ void VulkanContext::Destroy()
 
     CommandPool::DestroyCommandPool(m_Device, m_CommandPool);
 
-    Swapchain::DestroySwapchain(m_Device, m_Swapchain, m_SwapchainImageViews, m_SwapchainFramebuffers);
+    Swapchain::DestroySwapchain();
 
     VulkanPipeline::DestroyPipeline(m_Device, m_RenderPass, m_PipelineLayout, m_GraphicsPipeline);
 
