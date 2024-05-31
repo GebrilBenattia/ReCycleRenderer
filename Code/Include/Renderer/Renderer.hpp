@@ -12,6 +12,8 @@ public:
 
 	static inline RendererContext* context = nullptr;
 
+	void SelectActiveContext();
+	void CreateActiveContext();
 	void Init();
 	void Update();
 };
