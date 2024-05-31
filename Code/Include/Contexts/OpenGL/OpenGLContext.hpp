@@ -2,20 +2,20 @@
 
 #include <RendererContext.hpp>
 
-class DirectXContext : public RendererContext
+class OpenGLContext : public RendererContext
 {
 private:
 
-	static Window* m_Window;
+	static inline Window* m_Window = nullptr;
 
 public:
 
-	DirectXContext();
-	DirectXContext(const int _Width, const int _Height);
-	~DirectXContext();
+	OpenGLContext();
+	OpenGLContext(const int _Width, const int _Height);
+	~OpenGLContext();
 
 	void Create(std::optional<const int> _Width = std::nullopt, std::optional<const int> _Height = std::nullopt) override;
-	void InitDirectX();
+	void InitOpenGL();
 	void Update() override;
 	void Destroy() override;
 };

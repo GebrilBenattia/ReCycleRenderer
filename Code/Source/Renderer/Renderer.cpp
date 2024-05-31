@@ -29,8 +29,3 @@ void Renderer::Update()
 {
     context->Update();
 }
-
-void Renderer::Cleanup()
-{
-    context->Destroy();
-}

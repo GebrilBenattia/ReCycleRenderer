@@ -166,7 +166,6 @@ void Swapchain::DestroySwapchain(VkDevice& _LogicalDevice, VkSwapchainKHR& _Swap
     for (auto imageView : _SwapchainImageViews) {
         vkDestroyImageView(_LogicalDevice, imageView, nullptr);
     }
-    _SwapchainImageViews.clear();
 
     vkDestroySwapchainKHR(_LogicalDevice, _Swapchain, nullptr);
 }

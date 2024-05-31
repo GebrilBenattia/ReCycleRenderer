@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/DirectX/;$(SolutionDir)/Code/Include/Renderer/</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -94,7 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/DirectX/;$(SolutionDir)/Code/Include/Renderer/</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/DirectX/;$(SolutionDir)/Code/Include/Renderer/</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/DirectX/;$(SolutionDir)/Code/Include/Renderer/</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -145,51 +145,50 @@
   <ItemGroup>
     <ClCompile Include="Code\Source\Application.cpp" />
     <ClCompile Include="Code\Source\main.cpp" />
-    <ClCompile Include="Code\Source\PhysicalDevice.cpp" />
-    <ClCompile Include="Code\Source\Renderer.cpp" />
-    <ClCompile Include="Code\Source\RendererContext.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\PhysicalDevice.cpp" />
+    <ClCompile Include="Code\Source\Renderer\Renderer.cpp" />
     <ClCompile Include="Code\Source\Window.cpp" />
-    <ClCompile Include="Code\Source\VulkanInstance.cpp" />
-    <ClCompile Include="Code\Source\ValidationLayers.cpp" />
-    <ClCompile Include="Code\Source\LogicalDevice.cpp" />
-    <ClCompile Include="Code\Source\VulkanSurface.cpp" />
-    <ClCompile Include="Code\Source\Swapchain.cpp" />
-    <ClCompile Include="Code\Source\Framebuffers.cpp" />
-    <ClCompile Include="Code\Source\CommandPool.cpp" />
-    <ClCompile Include="Code\Source\CommandBuffer.cpp" />
-    <ClCompile Include="Code\Source\VulkanSemaphore.cpp" />
-    <ClCompile Include="Code\Source\VulkanFence.cpp" />
-    <ClCompile Include="Code\Source\Synchronisation.cpp" />
-    <ClCompile Include="Code\Source\VulkanShader.cpp" />
-    <ClCompile Include="Code\Source\VulkanPipeline.cpp" />
-    <ClCompile Include="Code\Source\OpenGLContext.cpp" />
-    <ClCompile Include="Code\Source\VulkanContext.cpp" />
-    <ClCompile Include="Code\Source\DirectXContext.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanInstance.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\ValidationLayers.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\LogicalDevice.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanSurface.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Swapchain.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Framebuffers.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\CommandPool.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\CommandBuffer.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanSemaphore.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanFence.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Synchronisation.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanShader.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanPipeline.cpp" />
+    <ClCompile Include="Code\Source\Contexts\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanContext.cpp" />
+    <ClCompile Include="Code\Source\Contexts\DirectX\DirectXContext.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp" />
-    <ClInclude Include="Code\Include\PhysicalDevice.hpp" />
-    <ClInclude Include="Code\Include\Renderer.hpp" />
-    <ClInclude Include="Code\Include\RendererContext.hpp" />
-    <ClInclude Include="Code\Include\VulkanImages.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\PhysicalDevice.hpp" />
+    <ClInclude Include="Code\Include\Renderer\Renderer.hpp" />
+    <ClInclude Include="Code\Include\Contexts\RendererContext.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanImages.hpp" />
     <ClInclude Include="Code\Include\Window.hpp" />
-    <ClInclude Include="Code\Include\Helper.hpp" />
-    <ClInclude Include="Code\Include\VulkanInstance.hpp" />
-    <ClInclude Include="Code\Include\ValidationLayers.hpp" />
-    <ClInclude Include="Code\Include\LogicalDevice.hpp" />
-    <ClInclude Include="Code\Include\VulkanSurface.hpp" />
-    <ClInclude Include="Code\Include\Swapchain.hpp" />
-    <ClInclude Include="Code\Include\Framebuffers.hpp" />
-    <ClInclude Include="Code\Include\CommandPool.hpp" />
-    <ClInclude Include="Code\Include\CommandBuffer.hpp" />
-    <ClInclude Include="Code\Include\VulkanSemaphore.hpp" />
-    <ClInclude Include="Code\Include\VulkanFence.hpp" />
-    <ClInclude Include="Code\Include\Synchronisation.hpp" />
-    <ClInclude Include="Code\Include\VulkanShader.hpp" />
-    <ClInclude Include="Code\Include\VulkanPipeline.hpp" />
-    <ClInclude Include="Code\Include\OpenGLContext.hpp" />
-    <ClInclude Include="Code\Include\VulkanContext.hpp" />
-    <ClInclude Include="Code\Include\DirectXContext.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helper.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanInstance.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\ValidationLayers.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\LogicalDevice.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanSurface.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Swapchain.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Framebuffers.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\CommandPool.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\CommandBuffer.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanSemaphore.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanFence.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Synchronisation.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanShader.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanPipeline.hpp" />
+    <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLContext.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanContext.hpp" />
+    <ClInclude Include="Code\Include\Contexts\DirectX\DirectXContext.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

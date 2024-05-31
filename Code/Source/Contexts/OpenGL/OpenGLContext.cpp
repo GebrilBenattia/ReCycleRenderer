@@ -1,7 +1,5 @@
 #include "OpenGLContext.hpp"
 
-Window* OpenGLContext::m_Window = nullptr;
-
 OpenGLContext::OpenGLContext()
 {
 	Create();

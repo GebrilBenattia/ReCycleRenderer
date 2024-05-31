@@ -1,7 +1,5 @@
 #include "DirectXContext.hpp"
 
-Window* DirectXContext::m_Window = nullptr;
-
 DirectXContext::DirectXContext()
 {
 	Create();

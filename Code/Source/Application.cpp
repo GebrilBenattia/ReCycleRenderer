@@ -25,5 +25,5 @@ void Application::Update()
 
 void Application::Shutdown()
 {
-	r->Cleanup();
+
 }
