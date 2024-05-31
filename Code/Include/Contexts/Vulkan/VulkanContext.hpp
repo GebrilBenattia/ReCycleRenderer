@@ -51,6 +51,7 @@ public:
 	void Update();
 	void Destroy();
 
+	Window& GetWindow() { return *m_Window; };
 	VkInstance& GetInstance() { return m_Instance; };
 	VkDebugUtilsMessengerEXT& GetDebugMessenger() { return m_DebugMessenger; };
 	VkSurfaceKHR& GetSurface() { return m_Surface; };
@@ -61,8 +62,8 @@ public:
 
 	VkSwapchainKHR& GetSwapchain() { return m_Swapchain; };
 	std::vector<VkImage>& GetSwapchainImages() { return m_SwapchainImages; };
-	VkFormat GetSwapchainImageFormat() { return m_SwapchainImageFormat; };
-	VkExtent2D GetSwapchainExtent() { return m_SwapchainExtent; };
+	VkFormat& GetSwapchainImageFormat() { return m_SwapchainImageFormat; };
+	VkExtent2D& GetSwapchainExtent() { return m_SwapchainExtent; };
 	std::vector<VkImageView>& GetSwapchainImageViews() { return m_SwapchainImageViews; };
 	std::vector<VkFramebuffer>& GetSwapchainFramebuffers() { return m_SwapchainFramebuffers; };
 
@@ -78,4 +79,5 @@ public:
 	std::vector<VkSemaphore>& GetRenderFinishedSemaphores() { return m_RenderFinishedSemaphores; };
 	std::vector<VkFence>& GetInFlightFences() { return m_InFlightFences; };
 	uint32_t& GetCurrentFrame() { return m_CurrentFrame; };
+	uint32_t GetMaxFramesInFlight() { return MAX_FRAMES_IN_FLIGHT; };
 };

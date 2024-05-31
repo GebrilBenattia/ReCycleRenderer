@@ -2,44 +2,48 @@
 #include <stdexcept>
 #include <CommandBuffer.hpp>
 #include <Swapchain.hpp>
+#include <Renderer.hpp>
+#include <VulkanContext.hpp>
 
-void Synchronisation::DrawFrame(VkPhysicalDevice& _PhysicalDevice, VkDevice& _LogicalDevice, uint32_t& _CurrentFrame, int _MaxFramesInFlight, VkSwapchainKHR& _Swapchain, std::vector<VkCommandBuffer>& _CmdBuffers, std::vector<VkFence>& _Fences, std::vector<VkSemaphore>& _ImageAvailableSemaphores, std::vector<VkSemaphore>& _RenderFinishedSemaphores, VkQueue& _GraphicsQueue, VkQueue& _PresentQueue, VkRenderPass& _RenderPass, std::vector<VkFramebuffer>& _Framebuffers, VkExtent2D& _Extent, VkPipeline& _Pipeline, VkSurfaceKHR& _Surface, std::vector<VkImage>& _SwapchainImages, std::vector<VkImageView>& _SwapchainImageViews, VkFormat& _SwapchainImageFormat, Window& _Window)
+void Synchronisation::DrawFrame()
 {
-    vkWaitForFences(_LogicalDevice, 1, &_Fences[_CurrentFrame], VK_TRUE, UINT64_MAX);
+    VulkanContext* context = reinterpret_cast<VulkanContext*>(Renderer::context);
+
+    vkWaitForFences(context->GetLogicalDevice(), 1, &context->GetInFlightFences()[context->GetCurrentFrame()], VK_TRUE, UINT64_MAX);
 
     uint32_t imageIndex;
-    VkResult result = vkAcquireNextImageKHR(_LogicalDevice, _Swapchain, UINT64_MAX, _ImageAvailableSemaphores[_CurrentFrame], VK_NULL_HANDLE, &imageIndex);
+    VkResult result = vkAcquireNextImageKHR(context->GetLogicalDevice(), context->GetSwapchain(), UINT64_MAX, context->GetImageAvailableSemaphores()[context->GetCurrentFrame()], VK_NULL_HANDLE, &imageIndex);
 
     if (result == VK_ERROR_OUT_OF_DATE_KHR) {
-        Swapchain::RecreateSwapchain(_PhysicalDevice, _LogicalDevice, _Surface, _Window.window, _Swapchain, _SwapchainImages, _SwapchainImageFormat, _Extent, _SwapchainImageViews, _Framebuffers, _RenderPass);
+        Swapchain::RecreateSwapchain(context->GetPhysicalDevice(), context->GetLogicalDevice(), context->GetSurface(), context->GetWindow().window, context->GetSwapchain(), context->GetSwapchainImages(), context->GetSwapchainImageFormat(), context->GetSwapchainExtent(), context->GetSwapchainImageViews(), context->GetSwapchainFramebuffers(), context->GetRenderPass());
         return;
     }
     else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
         throw std::runtime_error("failed to acquire swap chain image!");
     }
 
-    vkResetFences(_LogicalDevice, 1, &_Fences[_CurrentFrame]);
+    vkResetFences(context->GetLogicalDevice(), 1, &context->GetInFlightFences()[context->GetCurrentFrame()]);
 
-    vkResetCommandBuffer(_CmdBuffers[_CurrentFrame], /*VkCommandBufferResetFlagBits*/ 0);
-    CommandBuffer::RecordCommandBuffer(_CmdBuffers[_CurrentFrame], imageIndex, _RenderPass, _Framebuffers, _Extent, _Pipeline);
+    vkResetCommandBuffer(context->GetDrawCommandBuffers()[context->GetCurrentFrame()], /*VkCommandBufferResetFlagBits*/ 0);
+    CommandBuffer::RecordCommandBuffer(context->GetDrawCommandBuffers()[context->GetCurrentFrame()], imageIndex, context->GetRenderPass(), context->GetSwapchainFramebuffers(), context->GetSwapchainExtent(), context->GetGraphicsPipeline());
 
     VkSubmitInfo submitInfo{};
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
 
-    VkSemaphore waitSemaphores[] = { _ImageAvailableSemaphores[_CurrentFrame] };
+    VkSemaphore waitSemaphores[] = { context->GetImageAvailableSemaphores()[context->GetCurrentFrame()] };
     VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
     submitInfo.waitSemaphoreCount = 1;
     submitInfo.pWaitSemaphores = waitSemaphores;
     submitInfo.pWaitDstStageMask = waitStages;
 
     submitInfo.commandBufferCount = 1;
-    submitInfo.pCommandBuffers = &_CmdBuffers[_CurrentFrame];
+    submitInfo.pCommandBuffers = &context->GetDrawCommandBuffers()[context->GetCurrentFrame()];
 
-    VkSemaphore signalSemaphores[] = { _RenderFinishedSemaphores[_CurrentFrame] };
+    VkSemaphore signalSemaphores[] = { context->GetRenderFinishedSemaphores()[context->GetCurrentFrame()] };
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
 
-    if (vkQueueSubmit(_GraphicsQueue, 1, &submitInfo, _Fences[_CurrentFrame]) != VK_SUCCESS) {
+    if (vkQueueSubmit(context->GetGraphicsQueue(), 1, &submitInfo, context->GetInFlightFences()[context->GetCurrentFrame()]) != VK_SUCCESS) {
         throw std::runtime_error("failed to submit draw command buffer!");
     }
 
@@ -49,21 +53,21 @@ void Synchronisation::DrawFrame(VkPhysicalDevice& _PhysicalDevice, VkDevice& _Lo
     presentInfo.waitSemaphoreCount = 1;
     presentInfo.pWaitSemaphores = signalSemaphores;
 
-    VkSwapchainKHR swapChains[] = { _Swapchain };
+    VkSwapchainKHR swapChains[] = { context->GetSwapchain() };
     presentInfo.swapchainCount = 1;
     presentInfo.pSwapchains = swapChains;
 
     presentInfo.pImageIndices = &imageIndex;
 
-    result = vkQueuePresentKHR(_PresentQueue, &presentInfo);
+    result = vkQueuePresentKHR(context->GetPresentQueue(), &presentInfo);
 
-    if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || _Window.framebufferResized) {
-        _Window.framebufferResized = false;
-        Swapchain::RecreateSwapchain(_PhysicalDevice, _LogicalDevice, _Surface, _Window.window, _Swapchain, _SwapchainImages, _SwapchainImageFormat, _Extent, _SwapchainImageViews, _Framebuffers, _RenderPass);
+    if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || context->GetWindow().framebufferResized) {
+        context->GetWindow().framebufferResized = false;
+        Swapchain::RecreateSwapchain(context->GetPhysicalDevice(), context->GetLogicalDevice(), context->GetSurface(), context->GetWindow().window, context->GetSwapchain(), context->GetSwapchainImages(), context->GetSwapchainImageFormat(), context->GetSwapchainExtent(), context->GetSwapchainImageViews(), context->GetSwapchainFramebuffers(), context->GetRenderPass());
     }
     else if (result != VK_SUCCESS) {
         throw std::runtime_error("failed to present swap chain image!");
     }
 
-    _CurrentFrame = (_CurrentFrame + 1) % _MaxFramesInFlight;
+    context->GetCurrentFrame() = (context->GetCurrentFrame() + 1) % context->GetMaxFramesInFlight();
 }

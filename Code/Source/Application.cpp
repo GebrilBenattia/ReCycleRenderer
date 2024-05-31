@@ -5,7 +5,7 @@ Application::Application()
 {
 	r = new Renderer();
 
-	std::cout << "\x1b[32m" << "Launching ReCycle..." << "\x1b[0m" << std::endl;
+	std::cout << "\x1b[32m" << "Launching ReCycleRenderer..." << "\x1b[0m" << std::endl;
 	Init();
 }
 
@@ -26,5 +26,5 @@ void Application::Update()
 
 void Application::Shutdown()
 {
-	std::cout << "\x1b[31m" << "Closing ReCycle..." << "\x1b[0m" << std::endl;
+	std::cout << "\x1b[31m" << "Closing ReCycleRenderer..." << "\x1b[0m" << std::endl;
 }

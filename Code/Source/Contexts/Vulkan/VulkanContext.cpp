@@ -70,7 +70,7 @@ void VulkanContext::Update()
     while (!glfwWindowShouldClose(m_Window->window)) {
         glfwPollEvents();
 
-        Synchronisation::DrawFrame(m_PhysicalDevice, m_Device, m_CurrentFrame, MAX_FRAMES_IN_FLIGHT, m_Swapchain, m_DrawCommandBuffers, m_InFlightFences, m_ImageAvailableSemaphores, m_RenderFinishedSemaphores, m_GraphicsQueue, m_PresentQueue, m_RenderPass, m_SwapchainFramebuffers, m_SwapchainExtent, m_GraphicsPipeline, m_Surface, m_SwapchainImages, m_SwapchainImageViews, m_SwapchainImageFormat, *m_Window);
+        Synchronisation::DrawFrame();
     }
 }
 
