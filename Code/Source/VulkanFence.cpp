@@ -37,4 +37,5 @@ void VulkanFence::DestroyFences(VkDevice& _LogicalDevice, std::vector<VkFence>& 
 	for (size_t i = 0; i < _Fences.size(); i++) {
 		vkDestroyFence(_LogicalDevice, _Fences[i], nullptr);
 	}
+	_Fences.clear();
 }

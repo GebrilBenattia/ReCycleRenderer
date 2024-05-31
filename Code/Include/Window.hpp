@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GLFW/glfw3.h>
+#include <optional>
 
 class Window
 {
@@ -14,7 +15,6 @@ public:
 
 	bool framebufferResized = false;
 
-	Window();
 	Window(const int _Width, const int _Height);
 
 	void Create();

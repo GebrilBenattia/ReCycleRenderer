@@ -35,4 +35,5 @@ void VulkanSemaphore::DestroySemaphores(VkDevice& _LogicalDevice, std::vector<Vk
 	for (size_t i = 0; i < _Semaphores.size(); i++) {
 		vkDestroySemaphore(_LogicalDevice, _Semaphores[i], nullptr);
 	}
+	_Semaphores.clear();
 }

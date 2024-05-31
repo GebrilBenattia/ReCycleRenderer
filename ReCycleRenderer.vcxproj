@@ -147,6 +147,7 @@
     <ClCompile Include="Code\Source\main.cpp" />
     <ClCompile Include="Code\Source\PhysicalDevice.cpp" />
     <ClCompile Include="Code\Source\Renderer.cpp" />
+    <ClCompile Include="Code\Source\RendererContext.cpp" />
     <ClCompile Include="Code\Source\Window.cpp" />
     <ClCompile Include="Code\Source\VulkanInstance.cpp" />
     <ClCompile Include="Code\Source\ValidationLayers.cpp" />
@@ -161,11 +162,15 @@
     <ClCompile Include="Code\Source\Synchronisation.cpp" />
     <ClCompile Include="Code\Source\VulkanShader.cpp" />
     <ClCompile Include="Code\Source\VulkanPipeline.cpp" />
+    <ClCompile Include="Code\Source\OpenGLContext.cpp" />
+    <ClCompile Include="Code\Source\VulkanContext.cpp" />
+    <ClCompile Include="Code\Source\DirectXContext.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp" />
     <ClInclude Include="Code\Include\PhysicalDevice.hpp" />
     <ClInclude Include="Code\Include\Renderer.hpp" />
+    <ClInclude Include="Code\Include\RendererContext.hpp" />
     <ClInclude Include="Code\Include\VulkanImages.hpp" />
     <ClInclude Include="Code\Include\Window.hpp" />
     <ClInclude Include="Code\Include\Helper.hpp" />
@@ -182,6 +187,9 @@
     <ClInclude Include="Code\Include\Synchronisation.hpp" />
     <ClInclude Include="Code\Include\VulkanShader.hpp" />
     <ClInclude Include="Code\Include\VulkanPipeline.hpp" />
+    <ClInclude Include="Code\Include\OpenGLContext.hpp" />
+    <ClInclude Include="Code\Include\VulkanContext.hpp" />
+    <ClInclude Include="Code\Include\DirectXContext.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

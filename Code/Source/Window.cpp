@@ -1,12 +1,6 @@
 #include "Window.hpp"
 #include <Renderer.hpp>
 
-Window::Window()
-	:width(900), height(700)
-{
-	Create();
-}
-
 Window::Window(const int _Width, const int _Height)
 	:width(_Width), height(_Height)
 {

@@ -30,4 +30,5 @@ void Framebuffers::DestroyFramebuffers(VkDevice& _LogicalDevice, std::vector<VkF
     for (size_t i = 0; i < _Framebuffers.size(); i++) {
         vkDestroyFramebuffer(_LogicalDevice, _Framebuffers[i], nullptr);
     }
+    _Framebuffers.clear();
 }
