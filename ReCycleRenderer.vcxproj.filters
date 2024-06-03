@@ -72,6 +72,7 @@
     <ClCompile Include="Code\Source\Contexts\DirectX\DirectXRHI.cpp" />
     <ClCompile Include="Code\Source\Contexts\OpenGL\OpenGLRHI.cpp" />
     <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanRHI.cpp" />
+    <ClCompile Include="Externals\Glad\glad\glad.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp">

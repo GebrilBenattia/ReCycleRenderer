@@ -1,4 +1,5 @@
 #include "OpenGLContext.hpp"
+#include <glad/glad.h>
 
 OpenGLContext::OpenGLContext()
 {
@@ -25,6 +26,9 @@ void OpenGLContext::Create(std::optional<const int> _Width, std::optional<const 
 
 void OpenGLContext::Init()
 {
+	gladLoadGL();
+
+	glViewport(0, 0, m_Window->width, m_Window->height);
 }
 
 void OpenGLContext::Update()
@@ -32,6 +36,9 @@ void OpenGLContext::Update()
 	while (!glfwWindowShouldClose(m_Window->window)) {
 		glfwPollEvents();
 
+		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+		glfwSwapBuffers(m_Window->window);
 	}
 }
 
