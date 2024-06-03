@@ -30,45 +30,48 @@
     <ClCompile Include="Code\Source\Window.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanInstance.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\VulkanInstance.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\CommandBuffer.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\CommandBuffer.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\CommandPool.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\CommandPool.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\Framebuffers.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\Framebuffers.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\LogicalDevice.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\LogicalDevice.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\PhysicalDevice.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\PhysicalDevice.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\Swapchain.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\Swapchain.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\ValidationLayers.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\ValidationLayers.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanSemaphore.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\VulkanSemaphore.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanSurface.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\VulkanSurface.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanFence.cpp">
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\VulkanFence.cpp">
       <Filter>Source\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\Contexts\Vulkan\Synchronisation.cpp" />
-    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanShader.cpp" />
-    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanPipeline.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\Synchronisation.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\VulkanShader.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\VulkanPipeline.cpp" />
     <ClCompile Include="Code\Source\Contexts\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanContext.cpp" />
     <ClCompile Include="Code\Source\Contexts\DirectX\DirectXContext.cpp" />
+    <ClCompile Include="Code\Source\Contexts\DirectX\DirectXRHI.cpp" />
+    <ClCompile Include="Code\Source\Contexts\OpenGL\OpenGLRHI.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanRHI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp">
@@ -80,51 +83,55 @@
     <ClInclude Include="Code\Include\Window.hpp">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanInstance.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\VulkanInstance.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\Helper.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\Helper.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanSurface.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\VulkanSurface.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\Swapchain.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\Swapchain.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\ValidationLayers.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\ValidationLayers.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanFence.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\VulkanFence.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanImages.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\VulkanImages.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanSemaphore.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\VulkanSemaphore.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\PhysicalDevice.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\PhysicalDevice.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\LogicalDevice.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\LogicalDevice.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\Framebuffers.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\Framebuffers.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\CommandPool.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\CommandPool.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\CommandBuffer.hpp">
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\CommandBuffer.hpp">
       <Filter>Include\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Contexts\Vulkan\Synchronisation.hpp" />
-    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanShader.hpp" />
-    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanPipeline.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\Synchronisation.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\VulkanShader.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\VulkanPipeline.hpp" />
     <ClInclude Include="Code\Include\Contexts\RendererContext.hpp" />
     <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLContext.hpp" />
     <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanContext.hpp" />
     <ClInclude Include="Code\Include\Contexts\DirectX\DirectXContext.hpp" />
+    <ClInclude Include="Code\Include\Contexts\RHI.hpp" />
+    <ClInclude Include="Code\Include\Contexts\DirectX\DirectXRHI.hpp" />
+    <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLRHI.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanRHI.hpp" />
   </ItemGroup>
 </Project>

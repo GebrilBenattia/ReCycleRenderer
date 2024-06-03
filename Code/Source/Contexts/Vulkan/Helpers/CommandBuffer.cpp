@@ -70,9 +70,8 @@ void CommandBuffer::RecordCommandBuffer(VkCommandBuffer& _CmdBuffer, uint32_t _I
     scissor.extent = _Extent;
     vkCmdSetScissor(_CmdBuffer, 0, 1, &scissor);
 
-    vkCmdDraw(_CmdBuffer, 3, 1, 0, 0);
-
     //DRAW CALLS
+    vkCmdDraw(_CmdBuffer, 3, 1, 0, 0);
 
     vkCmdEndRenderPass(_CmdBuffer);
 

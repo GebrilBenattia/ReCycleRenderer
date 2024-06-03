@@ -4,6 +4,10 @@
 #include <VulkanContext.hpp>
 #include <DirectXContext.hpp>
 
+#include <OpenGLRHI.hpp>
+#include <VulkanRHI.hpp>
+#include <DirectXRHI.hpp>
+
 #include <stdexcept>
 #include <iostream>
 
@@ -19,7 +23,7 @@ void Renderer::SelectActiveContext()
 		int choice;
 		if (!(std::cin >> choice)) {
 			std::cout << "\x1b[2J\x1b[H";
-			std::cerr << "Invalid input. Please enter a number." << std::endl;
+			std::cerr << "\x1b[31m" << "Invalid input. Please enter a number." << "\x1b[0m" << std::endl;
 			std::cin.clear();  // Clear error flags
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Ignore invalid input
 			continue;  // Ask for input again
@@ -27,7 +31,7 @@ void Renderer::SelectActiveContext()
 
 		if (choice < 1 || choice > 3) {
 			std::cout << "\x1b[2J\x1b[H";
-			std::cerr << "Invalid choice. Please enter a number between 1 and 3." << std::endl;
+			std::cerr << "\x1b[31m" << "Invalid choice. Please enter a number between 1 and 3." << "\x1b[0m" << std::endl;
 			continue;  // Ask for input again
 		}
 
@@ -43,14 +47,17 @@ void Renderer::CreateActiveContext()
 	case OPENGL:
 		std::cout << "Creating OpenGL context...\n";
 		context = new OpenGLContext();
+		rhi = new OpenGLRHI();
 		break;
 	case VULKAN:
 		std::cout << "Creating Vulkan context...\n";
 		context = new VulkanContext();
+		rhi = new VulkanRHI();
 		break;
 	case DIRECTX:
 		std::cout << "Creating DirectX context...\n";
 		context = new DirectXContext();
+		rhi = new DirectXRHI();
 		break;
 	default:
 		throw std::runtime_error("Select a renderer context");
@@ -60,7 +67,7 @@ void Renderer::CreateActiveContext()
 
 void Renderer::Init()
 {
-	//SelectActiveContext();
+	SelectActiveContext();
 	CreateActiveContext();
 	context->Init(); // NOW OUTSIDE OF THE CONSTRUCTOR BECAUSE OF THE MULTIPLE CALL OF THE CONTEXT INSIDE OTHER SETUP CLASSES, NOT SET UNTIL WE GET OUT OF THE CONSTRUCTOR SO WE NEED TO PUT IT OUTSIDE, ELSE WE USE NULL POINTER
 }
