@@ -13,7 +13,11 @@ Window::Window(const int _Width, const int _Height)
 	case VULKAN:
 		CreateForVulkan();
 		break;
-	case DIRECTX:
+	case DIRECT3D11:
+		CreateForDirectX();
+		break;
+	case DIRECT3D12:
+		CreateForDirectX();
 		break;
 	default:
 		break;
@@ -49,6 +53,19 @@ void Window::CreateForVulkan()
 	}
 	glfwSetWindowUserPointer(window, this);
 	glfwSetFramebufferSizeCallback(window, FramebufferResizeCallback);
+}
+
+void Window::CreateForDirectX()
+{
+	glfwInit();
+
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+
+	window = glfwCreateWindow(width, height, "ReCycleRenderer", nullptr, nullptr);
+	if (!window) {
+		throw std::runtime_error("failed to create DirectX window");
+		glfwTerminate();
+	}
 }
 
 void Window::Destroy()

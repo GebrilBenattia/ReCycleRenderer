@@ -7,7 +7,8 @@ enum RENDERING_CONTEXT
 {
 	OPENGL,
 	VULKAN,
-	DIRECTX
+	DIRECT3D11,
+	DIRECT3D12
 };
 
 class RendererContext

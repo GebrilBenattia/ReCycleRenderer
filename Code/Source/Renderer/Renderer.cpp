@@ -2,11 +2,13 @@
 
 #include <OpenGLContext.hpp>
 #include <VulkanContext.hpp>
-#include <DirectXContext.hpp>
+#include <Direct3D11Context.hpp>
+#include <Direct3D12Context.hpp>
 
 #include <OpenGLRHI.hpp>
 #include <VulkanRHI.hpp>
-#include <DirectXRHI.hpp>
+#include <Direct3D11RHI.hpp>
+#include <Direct3D12RHI.hpp>
 
 #include <stdexcept>
 #include <iostream>
@@ -17,8 +19,9 @@ void Renderer::SelectActiveContext()
 		std::cout << "Select the renderer context:\n"
 			<< "1. OpenGL\n"
 			<< "2. Vulkan\n"
-			<< "3. DirectX\n"
-			<< "Enter your choice (1-3): ";
+			<< "3. Direct3D11\n"
+			<< "4. Direct3D12\n"
+			<< "Enter your choice (1-4): ";
 
 		int choice;
 		if (!(std::cin >> choice)) {
@@ -29,9 +32,9 @@ void Renderer::SelectActiveContext()
 			continue;  // Ask for input again
 		}
 
-		if (choice < 1 || choice > 3) {
+		if (choice < 1 || choice > 4) {
 			std::cout << "\x1b[2J\x1b[H";
-			std::cerr << "\x1b[31m" << "Invalid choice. Please enter a number between 1 and 3." << "\x1b[0m" << std::endl;
+			std::cerr << "\x1b[31m" << "Invalid choice. Please enter a number between 1 and 4." << "\x1b[0m" << std::endl;
 			continue;  // Ask for input again
 		}
 
@@ -54,10 +57,15 @@ void Renderer::CreateActiveContext()
 		context = new VulkanContext();
 		rhi = new VulkanRHI();
 		break;
-	case DIRECTX:
-		std::cout << "Creating DirectX context...\n";
-		context = new DirectXContext();
-		rhi = new DirectXRHI();
+	case DIRECT3D11:
+		std::cout << "Creating Direct3D11 context...\n";
+		context = new Direct3D11Context();
+		rhi = new Direct3D11RHI();
+		break;
+	case DIRECT3D12:
+		std::cout << "Creating Direct3D12 context...\n";
+		context = new Direct3D12Context();
+		rhi = new Direct3D12RHI();
 		break;
 	default:
 		throw std::runtime_error("Select a renderer context");

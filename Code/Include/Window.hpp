@@ -4,6 +4,10 @@
 #include <GLFW/glfw3.h>
 #include <optional>
 
+#ifdef APIENTRY
+#undef APIENTRY	// #include <d3d11> in Direct3D11Context include a header that defines it, so to get rid of the warning when building undef it because GLFW defines it too
+#endif
+
 class Window
 {
 private:
@@ -20,6 +24,7 @@ public:
 
 	void CreateForOpenGL();
 	void CreateForVulkan();
+	void CreateForDirectX();
 	void Destroy();
 
 	static void FramebufferResizeCallback(GLFWwindow* window, int width, int height);

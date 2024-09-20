@@ -68,11 +68,13 @@
     <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\VulkanPipeline.cpp" />
     <ClCompile Include="Code\Source\Contexts\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanContext.cpp" />
-    <ClCompile Include="Code\Source\Contexts\DirectX\DirectXContext.cpp" />
-    <ClCompile Include="Code\Source\Contexts\DirectX\DirectXRHI.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Direct3D11\Direct3D11Context.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Direct3D11\Direct3D11RHI.cpp" />
     <ClCompile Include="Code\Source\Contexts\OpenGL\OpenGLRHI.cpp" />
     <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanRHI.cpp" />
     <ClCompile Include="Externals\Glad\glad\glad.c" />
+    <ClCompile Include="Code\Source\Contexts\Direct3D12\Direct3D12Context.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Direct3D12\Direct3D12RHI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp">
@@ -129,10 +131,12 @@
     <ClInclude Include="Code\Include\Contexts\RendererContext.hpp" />
     <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLContext.hpp" />
     <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanContext.hpp" />
-    <ClInclude Include="Code\Include\Contexts\DirectX\DirectXContext.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Direct3D11\Direct3D11Context.hpp" />
     <ClInclude Include="Code\Include\Contexts\RHI.hpp" />
-    <ClInclude Include="Code\Include\Contexts\DirectX\DirectXRHI.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Direct3D11\Direct3D11RHI.hpp" />
     <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLRHI.hpp" />
     <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanRHI.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Direct3D12\Direct3D12Context.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Direct3D12\Direct3D12RHI.hpp" />
   </ItemGroup>
 </Project>

@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/Glad/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Renderer/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/OpenGL/Helpers/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/Vulkan/Helpers/;$(SolutionDir)/Code/Include/Contexts/DirectX/;$(SolutionDir)/Code/Include/Contexts/DirectX/Helpers/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/Glad/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Renderer/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/OpenGL/Helpers/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/Vulkan/Helpers/;$(SolutionDir)/Code/Include/Contexts/Direct3D11/;$(SolutionDir)/Code/Include/Contexts/Direct3D11/Helpers/;$(SolutionDir)/Code/Include/Contexts/Direct3D12/;$(SolutionDir)/Code/Include/Contexts/Direct3D12/Helpers/</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -94,7 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/Glad/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Renderer/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/OpenGL/Helpers/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/Vulkan/Helpers/;$(SolutionDir)/Code/Include/Contexts/DirectX/;$(SolutionDir)/Code/Include/Contexts/DirectX/Helpers/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/Glad/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Renderer/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/OpenGL/Helpers/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/Vulkan/Helpers/;$(SolutionDir)/Code/Include/Contexts/Direct3D11/;$(SolutionDir)/Code/Include/Contexts/Direct3D11/Helpers/;$(SolutionDir)/Code/Include/Contexts/Direct3D12/;$(SolutionDir)/Code/Include/Contexts/Direct3D12/Helpers/</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/Glad/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Renderer/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/OpenGL/Helpers/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/Vulkan/Helpers/;$(SolutionDir)/Code/Include/Contexts/DirectX/;$(SolutionDir)/Code/Include/Contexts/DirectX/Helpers/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/Glad/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Renderer/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/OpenGL/Helpers/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/Vulkan/Helpers/;$(SolutionDir)/Code/Include/Contexts/Direct3D11/;$(SolutionDir)/Code/Include/Contexts/Direct3D11/Helpers/;$(SolutionDir)/Code/Include/Contexts/Direct3D12/;$(SolutionDir)/Code/Include/Contexts/Direct3D12/Helpers/</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/Glad/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Renderer/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/OpenGL/Helpers/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/Vulkan/Helpers/;$(SolutionDir)/Code/Include/Contexts/DirectX/;$(SolutionDir)/Code/Include/Contexts/DirectX/Helpers/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals/;$(SolutionDir)Externals/Glad/;$(SolutionDir)Externals/VulkanSDK/1.3.275.0/Include/;$(SolutionDir)/Code/Include/;$(SolutionDir)/Code/Include/Renderer/;$(SolutionDir)/Code/Include/Contexts/;$(SolutionDir)/Code/Include/Contexts/OpenGL/;$(SolutionDir)/Code/Include/Contexts/OpenGL/Helpers/;$(SolutionDir)/Code/Include/Contexts/Vulkan/;$(SolutionDir)/Code/Include/Contexts/Vulkan/Helpers/;$(SolutionDir)/Code/Include/Contexts/Direct3D11/;$(SolutionDir)/Code/Include/Contexts/Direct3D11/Helpers/;$(SolutionDir)/Code/Include/Contexts/Direct3D12/;$(SolutionDir)/Code/Include/Contexts/Direct3D12/Helpers/</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -163,10 +163,12 @@
     <ClCompile Include="Code\Source\Contexts\Vulkan\Helpers\VulkanPipeline.cpp" />
     <ClCompile Include="Code\Source\Contexts\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanContext.cpp" />
-    <ClCompile Include="Code\Source\Contexts\DirectX\DirectXContext.cpp" />
-    <ClCompile Include="Code\Source\Contexts\DirectX\DirectXRHI.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Direct3D11\Direct3D11Context.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Direct3D11\Direct3D11RHI.cpp" />
     <ClCompile Include="Code\Source\Contexts\OpenGL\OpenGLRHI.cpp" />
     <ClCompile Include="Code\Source\Contexts\Vulkan\VulkanRHI.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Direct3D12\Direct3D12Context.cpp" />
+    <ClCompile Include="Code\Source\Contexts\Direct3D12\Direct3D12RHI.cpp" />
     <ClCompile Include="Externals\Glad\glad\glad.c" />
   </ItemGroup>
   <ItemGroup>
@@ -193,10 +195,12 @@
     <ClInclude Include="Code\Include\Contexts\Vulkan\Helpers\VulkanPipeline.hpp" />
     <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLContext.hpp" />
     <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanContext.hpp" />
-    <ClInclude Include="Code\Include\Contexts\DirectX\DirectXContext.hpp" />
-    <ClInclude Include="Code\Include\Contexts\DirectX\DirectXRHI.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Direct3D11\Direct3D11Context.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Direct3D11\Direct3D11RHI.hpp" />
     <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLRHI.hpp" />
     <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanRHI.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Direct3D12\Direct3D12Context.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Direct3D12\Direct3D12RHI.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

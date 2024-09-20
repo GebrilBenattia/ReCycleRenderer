@@ -1,8 +1,9 @@
 #pragma once
 
 #include <RendererContext.hpp>
+#include <d3d12.h>
 
-class DirectXContext : public RendererContext
+class Direct3D12Context : public RendererContext
 {
 private:
 
@@ -10,9 +11,9 @@ private:
 
 public:
 
-	DirectXContext();
-	DirectXContext(const int _Width, const int _Height);
-	~DirectXContext();
+	Direct3D12Context();
+	Direct3D12Context(const int _Width, const int _Height);
+	~Direct3D12Context();
 
 	void Create(std::optional<const int> _Width = std::nullopt, std::optional<const int> _Height = std::nullopt) override;
 	void Init() override;

@@ -2,7 +2,7 @@
 
 #include <RHI.hpp>
 
-class DirectXRHI : public RHI
+class Direct3D12RHI : public RHI
 {
 private:
 
