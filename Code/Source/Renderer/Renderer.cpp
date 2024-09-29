@@ -1,4 +1,4 @@
-#include "Renderer.hpp"
+#include <Renderer.hpp>
 
 #include <OpenGLContext.hpp>
 #include <VulkanContext.hpp>
@@ -75,7 +75,7 @@ void Renderer::CreateActiveContext()
 
 void Renderer::Init()
 {
-	SelectActiveContext();
+	//SelectActiveContext();
 	CreateActiveContext();
 	context->Init(); // NOW OUTSIDE OF THE CONSTRUCTOR BECAUSE OF THE MULTIPLE CALL OF THE CONTEXT INSIDE OTHER SETUP CLASSES, NOT SET UNTIL WE GET OUT OF THE CONSTRUCTOR SO WE NEED TO PUT IT OUTSIDE, ELSE WE USE NULL POINTER
 }

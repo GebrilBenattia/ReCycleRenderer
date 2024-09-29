@@ -5,7 +5,7 @@ Direct3D12Context::Direct3D12Context()
 	Create();
 }
 
-Direct3D12Context::Direct3D12Context(const int _Width, const int _Height)
+Direct3D12Context::Direct3D12Context(const int& _Width, const int& _Height)
 {
 	Create(_Width, _Height);
 }
@@ -15,7 +15,7 @@ Direct3D12Context::~Direct3D12Context()
 	Destroy();
 }
 
-void Direct3D12Context::Create(std::optional<const int> _Width, std::optional<const int> _Height)
+void Direct3D12Context::Create(const std::optional<const int>& _Width, const std::optional<const int>& _Height)
 {
 	if (m_Window) {
 		delete m_Window;

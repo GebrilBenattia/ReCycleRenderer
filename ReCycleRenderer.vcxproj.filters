@@ -75,6 +75,7 @@
     <ClCompile Include="Externals\Glad\glad\glad.c" />
     <ClCompile Include="Code\Source\Contexts\Direct3D12\Direct3D12Context.cpp" />
     <ClCompile Include="Code\Source\Contexts\Direct3D12\Direct3D12RHI.cpp" />
+    <ClCompile Include="Code\Source\Inputs\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp">
@@ -131,12 +132,13 @@
     <ClInclude Include="Code\Include\Contexts\RendererContext.hpp" />
     <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLContext.hpp" />
     <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanContext.hpp" />
-    <ClInclude Include="Code\Include\Contexts\Direct3D11\Direct3D11Context.hpp" />
     <ClInclude Include="Code\Include\Contexts\RHI.hpp" />
     <ClInclude Include="Code\Include\Contexts\Direct3D11\Direct3D11RHI.hpp" />
     <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLRHI.hpp" />
     <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanRHI.hpp" />
     <ClInclude Include="Code\Include\Contexts\Direct3D12\Direct3D12Context.hpp" />
     <ClInclude Include="Code\Include\Contexts\Direct3D12\Direct3D12RHI.hpp" />
+    <ClInclude Include="Code\Include\Inputs\InputManager.hpp" />
+    <ClInclude Include="Code\Include\Contexts\Direct3D11\Direct3D11Context.hpp" />
   </ItemGroup>
 </Project>

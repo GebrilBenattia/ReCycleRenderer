@@ -48,7 +48,7 @@ void CommandBuffer::RecordCommandBuffer(VkCommandBuffer& _CmdBuffer, uint32_t _I
     renderPassInfo.renderArea.offset = { 0, 0 };
     renderPassInfo.renderArea.extent = _Extent;
 
-    VkClearValue clearColor = { {{0.0f, 0.0f, 0.0f, 1.0f}} };
+    VkClearValue clearColor = { {{0.07f, 0.13f, 0.17f, 1.0f}} };
     renderPassInfo.clearValueCount = 1;
     renderPassInfo.pClearValues = &clearColor;
 

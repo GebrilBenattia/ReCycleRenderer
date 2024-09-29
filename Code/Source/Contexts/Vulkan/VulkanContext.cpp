@@ -21,7 +21,7 @@ VulkanContext::VulkanContext()
     Create();
 }
 
-VulkanContext::VulkanContext(const int _Width, const int _Height)
+VulkanContext::VulkanContext(const int& _Width, const int& _Height)
 {
     Create(_Width, _Height);
 }
@@ -31,7 +31,7 @@ VulkanContext::~VulkanContext()
 	Destroy();
 }
 
-void VulkanContext::Create(std::optional<const int> _Width, std::optional<const int> _Height)
+void VulkanContext::Create(const std::optional<const int>& _Width, const std::optional<const int>& _Height)
 {
     if (m_Window) {
         delete m_Window;

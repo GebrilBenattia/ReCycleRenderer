@@ -43,10 +43,10 @@ private:
 public:
 
 	VulkanContext();
-	VulkanContext(const int _Width, const int _Height);
+	VulkanContext(const int& _Width, const int& _Height);
 	~VulkanContext();
 
-	void Create(std::optional<const int> _Width = std::nullopt, std::optional<const int> _Height = std::nullopt) override;
+	void Create(const std::optional<const int>& _Width = std::nullopt, const std::optional<const int>& _Height = std::nullopt) override;
 	void Init() override;
 	void Update() override;
 	void Destroy() override;
