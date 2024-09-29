@@ -1,6 +1,11 @@
 #pragma once
 
 #include <RendererContext.hpp>
+#include <glad/glad.h>
+
+#ifdef APIENTRY
+#undef APIENTRY	// #include <glad/glad.h> include a header that defines it, so to get rid of the warning when building undef it because GLFW defines it too
+#endif
 
 class OpenGLContext : public RendererContext
 {

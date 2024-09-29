@@ -2,9 +2,6 @@
 #include <Renderer.hpp>
 #include <stdexcept>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
-
 Window::Window(const int _Width, const int _Height)
 	:width(_Width), height(_Height)
 {
@@ -55,7 +52,6 @@ void Window::CreateForVulkan()
 		glfwTerminate();
 	}
 	glfwSetWindowUserPointer(window, this);
-	glfwSetFramebufferSizeCallback(window, FramebufferResizeCallback);
 }
 
 void Window::CreateForDirectX()
@@ -75,10 +71,4 @@ void Window::Destroy()
 {
 	glfwDestroyWindow(window);
 	glfwTerminate();
-}
-
-void Window::FramebufferResizeCallback(GLFWwindow* window, int width, int height)
-{
-	auto renderer = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
-	renderer->framebufferResized = true;
 }

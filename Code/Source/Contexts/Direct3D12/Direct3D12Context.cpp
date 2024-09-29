@@ -1,4 +1,4 @@
-#include "Direct3D12Context.hpp"
+#include <Direct3D12Context.hpp>
 
 Direct3D12Context::Direct3D12Context()
 {
@@ -29,7 +29,9 @@ void Direct3D12Context::Init()
 
 void Direct3D12Context::Update()
 {
+	// Loop until GLFW window has been instructed to close
 	while (!glfwWindowShouldClose(m_Window->window)) {
+		// Checks if any event has been triggered (keyboard inputs, mouse events), update the window state and calls the corresponding functions (callbacks)
 		glfwPollEvents();
 
 	}
