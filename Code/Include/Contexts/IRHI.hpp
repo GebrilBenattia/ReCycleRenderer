@@ -1,10 +1,10 @@
 #pragma once
 
-class RHI
+class IRHI
 {
 private:
 
 public:
 
-	virtual ~RHI() = 0 {}
+	virtual ~IRHI() = 0 {}
 };

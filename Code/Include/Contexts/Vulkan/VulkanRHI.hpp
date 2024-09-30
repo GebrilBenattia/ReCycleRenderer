@@ -1,8 +1,8 @@
 #pragma once
 
-#include <RHI.hpp>
+#include <IRHI.hpp>
 
-class VulkanRHI : public RHI
+class VulkanRHI : public IRHI
 {
 private:
 

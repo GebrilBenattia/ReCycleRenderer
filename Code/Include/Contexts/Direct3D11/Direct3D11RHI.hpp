@@ -1,8 +1,8 @@
 #pragma once
 
-#include <RHI.hpp>
+#include <IRHI.hpp>
 
-class Direct3D11RHI : public RHI
+class Direct3D11RHI : public IRHI
 {
 private:
 

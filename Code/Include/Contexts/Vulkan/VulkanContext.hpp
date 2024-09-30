@@ -1,22 +1,21 @@
 #pragma once
 
-#include <RendererContext.hpp>
+#include <IRendererContext.hpp>
 #include <vulkan/vulkan.h>
+#include <memory>
 
-class VulkanContext : public RendererContext
+class VulkanContext : public IRendererContext
 {
 private:
-
-	Window* m_Window = nullptr;
 
 public:
 
 	VulkanContext();
-	VulkanContext(const int& _Width, const int& _Height);
 	~VulkanContext();
 
-	void Create(const std::optional<const int>& _Width = std::nullopt, const std::optional<const int>& _Height = std::nullopt) override;
+	// Initializes the Vulkan API context
 	void Init() override;
-	void Update() override;
+
+	// Destroys the Vulkan API context (e.g. cleaning, destroying allocated stuff)
 	void Destroy() override;
 };

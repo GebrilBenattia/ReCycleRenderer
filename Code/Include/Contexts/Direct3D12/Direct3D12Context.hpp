@@ -1,22 +1,21 @@
 #pragma once
 
-#include <RendererContext.hpp>
+#include <IRendererContext.hpp>
 #include <d3d12.h>
+#include <memory>
 
-class Direct3D12Context : public RendererContext
+class Direct3D12Context : public IRendererContext
 {
 private:
-
-	Window* m_Window = nullptr;
 
 public:
 
 	Direct3D12Context();
-	Direct3D12Context(const int& _Width, const int& _Height);
 	~Direct3D12Context();
 
-	void Create(const std::optional<const int>& _Width = std::nullopt, const std::optional<const int>& _Height = std::nullopt) override;
+	// Initializes the Direct3D12 API context
 	void Init() override;
-	void Update() override;
+	
+	// Destroys the Direct3D12 API context (e.g. cleaning, destroying allocated stuff)
 	void Destroy() override;
 };

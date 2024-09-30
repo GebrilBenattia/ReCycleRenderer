@@ -1,26 +1,25 @@
 #pragma once
 
-#include <RendererContext.hpp>
+#include <IRendererContext.hpp>
 #include <glad/glad.h>
+#include <memory>
 
 #ifdef APIENTRY
 #undef APIENTRY	// #include <glad/glad.h> include a header that defines it, so to get rid of the warning when building undef it because GLFW defines it too
 #endif
 
-class OpenGLContext : public RendererContext
+class OpenGLContext : public IRendererContext
 {
 private:
-
-	Window* m_Window = nullptr;
 
 public:
 
 	OpenGLContext();
-	OpenGLContext(const int& _Width, const int& _Height);
 	~OpenGLContext();
 
-	void Create(const std::optional<const int>& _Width = std::nullopt, const std::optional<const int>& _Height = std::nullopt) override;
+	// Initializes the OpenGL API context
 	void Init() override;
-	void Update() override;
+
+	// Destroys the OpenGL API context (e.g. cleaning, destroying allocated stuff)
 	void Destroy() override;
 };

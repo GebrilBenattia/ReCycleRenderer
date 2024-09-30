@@ -4,9 +4,11 @@
 
 int main()
 {
-	Application app;
-
 	try {
+		// Creating application instance
+		Application app;
+
+		// Performs the main update loop
 		app.Update();
 	}
 	catch (const std::exception& e) {
@@ -14,5 +16,6 @@ int main()
 		return EXIT_FAILURE;
 	}
 
+	// Indicates success if no exceptions occurred
 	return EXIT_SUCCESS;
 }

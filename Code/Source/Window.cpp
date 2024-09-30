@@ -1,11 +1,11 @@
-#include "Window.hpp"
+#include <Window.hpp>
 #include <Renderer.hpp>
 #include <stdexcept>
 
-Window::Window(const int _Width, const int _Height)
-	:width(_Width), height(_Height)
+Window::Window(const RENDERING_CONTEXT& _ActiveContext, const int& _Width, const int& _Height)
+	:width(_Width), height(_Height), window(nullptr, glfwDestroyWindow) // Initializes with nullptr and custom deleter
 {
-	switch (Renderer::activeContext)
+	switch (_ActiveContext)
 	{
 	case OPENGL:
 		CreateForOpenGL();
@@ -26,41 +26,55 @@ Window::Window(const int _Width, const int _Height)
 
 void Window::CreateForOpenGL()
 {
+	// Initializes the GLFW library to manage windows and input events.
 	glfwInit();
 
+	// Requests an OpenGL context with major version 4.
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+
+	// Requests an OpenGL context with minor version 6.
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+
+	// Requests a core profile for OpenGL to avoid deprecated features.
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(width, height, "ReCycleRenderer", nullptr, nullptr);
+	// Takes ownership of the newly created GLFW window and ensure any previously managed window is destroyed.
+	window.reset(glfwCreateWindow(width, height, "ReCycleRenderer - OpenGL", nullptr, nullptr));
 	if (!window) {
 		throw std::runtime_error("failed to create OpenGL window");
 		glfwTerminate();
 	}
-	glfwMakeContextCurrent(window); // It's used to associate the OpenGL context of a window with the current thread, allowing OpenGL rendering commands to be executed within that context.
+
+	// Makes the newly created window's context current for OpenGL rendering commands.
+	glfwMakeContextCurrent(window.get());
 }
 
 void Window::CreateForVulkan()
 {
+	// Initializes the GLFW library to manage windows and input events.
 	glfwInit();
 
+	// Specifies that no OpenGL or OpenGL ES context should be created for this window.
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
-	window = glfwCreateWindow(width, height, "ReCycleRenderer", nullptr, nullptr);
+	// Takes ownership of the newly created GLFW window and ensure any previously managed window is destroyed.
+	window.reset(glfwCreateWindow(width, height, "ReCycleRenderer - Vulkan", nullptr, nullptr));
 	if (!window) {
 		throw std::runtime_error("failed to create Vulkan window");
 		glfwTerminate();
 	}
-	glfwSetWindowUserPointer(window, this);
 }
 
 void Window::CreateForDirectX()
 {
+	// Initializes the GLFW library to manage windows and input events.
 	glfwInit();
 
+	// Specifies that no OpenGL or OpenGL ES context should be created for this window.
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
-	window = glfwCreateWindow(width, height, "ReCycleRenderer", nullptr, nullptr);
+	// Takes ownership of the newly created GLFW window and ensure any previously managed window is destroyed.
+	window.reset(glfwCreateWindow(width, height, "ReCycleRenderer - DirectX", nullptr, nullptr));
 	if (!window) {
 		throw std::runtime_error("failed to create DirectX window");
 		glfwTerminate();
@@ -69,6 +83,6 @@ void Window::CreateForDirectX()
 
 void Window::Destroy()
 {
-	glfwDestroyWindow(window);
+	// Terminates GLFW and release any resources allocated by the library.
 	glfwTerminate();
 }

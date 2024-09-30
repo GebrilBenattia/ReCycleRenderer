@@ -1,8 +1,8 @@
 #pragma once
 
-#include <RHI.hpp>
+#include <IRHI.hpp>
 
-class OpenGLRHI : public RHI
+class OpenGLRHI : public IRHI
 {
 private:
 

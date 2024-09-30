@@ -162,9 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp" />
-    <ClInclude Include="Code\Include\Contexts\RHI.hpp" />
+    <ClInclude Include="Code\Include\Contexts\IRHI.hpp" />
     <ClInclude Include="Code\Include\Renderer\Renderer.hpp" />
-    <ClInclude Include="Code\Include\Contexts\RendererContext.hpp" />
+    <ClInclude Include="Code\Include\Contexts\IRendererContext.hpp" />
     <ClInclude Include="Code\Include\Window.hpp" />
     <ClInclude Include="Code\Include\Contexts\OpenGL\OpenGLContext.hpp" />
     <ClInclude Include="Code\Include\Contexts\Vulkan\VulkanContext.hpp" />
