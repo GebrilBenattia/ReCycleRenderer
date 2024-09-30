@@ -8,20 +8,27 @@
 #endif
 
 #include <IRendererContext.hpp>
+
+#include <string>
 #include <memory>
+
+struct WindowAttributes
+{
+	std::string title;
+	int width = 0;
+	int height = 0;
+	bool framebufferResized = false;
+};
 
 class Window
 {
 private:
 
-public:
-
 	// Unique pointer with custom deleter
-	std::unique_ptr<GLFWwindow, decltype(&glfwDestroyWindow)> window;
+	std::unique_ptr<GLFWwindow, decltype(&glfwDestroyWindow)> m_Window;
+	WindowAttributes m_WindowAttributes;
 
-	int width, height;
-
-	bool framebufferResized = false;
+public:
 
 	Window(const RENDERING_CONTEXT& _ActiveContext, const int& _Width, const int& _Height);
 
@@ -36,4 +43,12 @@ public:
 	
 	// Terminates the GLFW context (window destruction is handled by the std::unique_ptr custom deleter) 
 	void Destroy();
+
+	// Adding const after the method to make it Read-Only so it does not modify any members of the class
+
+	// Read-Only Method that returns const GFLWwindow*
+	[[nodiscard]] const GLFWwindow* GetWindow() const { return m_Window.get(); }
+
+	// Read-Only Method that returns const WindowAttributes (e.g. holding title, width, height, etc...)
+	[[nodiscard]] const WindowAttributes& GetWindowAttributes() const { return m_WindowAttributes; }
 };

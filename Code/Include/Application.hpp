@@ -3,6 +3,7 @@
 #include <Window.hpp>
 #include <IRendererContext.hpp>
 #include <Renderer.hpp>
+
 #include <memory>
 #include <optional>
 
@@ -11,7 +12,7 @@ class Application
 private:
 
 	std::unique_ptr<Window> m_Window = nullptr;
-	RENDERING_CONTEXT m_ActiveContext = RENDERING_CONTEXT::OPENGL;
+	RENDERING_CONTEXT m_ActiveContext;
 	std::unique_ptr<Renderer> m_Renderer = nullptr;
 
 public:

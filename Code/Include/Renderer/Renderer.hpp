@@ -3,6 +3,7 @@
 #include <Window.hpp>
 #include <IRendererContext.hpp>
 #include <IRHI.hpp>
+
 #include <memory>
 
 class Renderer
@@ -35,12 +36,14 @@ public:
 	// Cleans up the allocated rendering stuff before application shutdown
 	void Cleanup();
 
+	// First const ensure that the object I'm pointing to is constant, the second one makes the pointer constant too
+
 	// Returns a pointer of the application Window
-	[[nodiscard]] static const Window* GetWindow() { return m_Window; }
+	[[nodiscard]] static const Window* const GetWindow() { return m_Window; }
 
 	// Returns the active RendererContext
-	[[nodiscard]] static const IRendererContext* GetContext() { return m_Context.get(); }
+	[[nodiscard]] static const IRendererContext* const GetContext() { return m_Context.get(); }
 
 	// Returns the RHI linked to the active RendererContext
-	[[nodiscard]] static const IRHI* GetRHI() { return m_RHI.get(); }
+	[[nodiscard]] static const IRHI* const GetRHI() { return m_RHI.get(); }
 };

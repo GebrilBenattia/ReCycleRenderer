@@ -64,7 +64,7 @@ void Application::Init()
 void Application::Update()
 {
 	// Loops until GLFW window has been instructed to close
-	while (!glfwWindowShouldClose(m_Window->window.get())) {
+	while (!glfwWindowShouldClose(const_cast<GLFWwindow*>(m_Window->GetWindow()))) {
 		// Checks if any event has been triggered (keyboard inputs, mouse events), update the window state and calls the corresponding functions (callbacks)
 		glfwPollEvents();
 
