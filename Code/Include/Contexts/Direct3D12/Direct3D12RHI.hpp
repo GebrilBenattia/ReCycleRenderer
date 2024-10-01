@@ -8,4 +8,5 @@ private:
 
 public:
 
+	void Update() override;
 };

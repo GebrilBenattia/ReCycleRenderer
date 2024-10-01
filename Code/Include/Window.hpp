@@ -46,8 +46,8 @@ public:
 
 	// Adding const after the method to make it Read-Only so it does not modify any members of the class
 
-	// Read-Only Method that returns const GFLWwindow*
-	[[nodiscard]] const GLFWwindow* GetWindow() const { return m_Window.get(); }
+	// Read-Only Method that returns a GFLWwindow* which cannot be reassigned but its value can be modified
+	[[nodiscard]] GLFWwindow* const GetWindow() const { return m_Window.get(); }
 
 	// Read-Only Method that returns const WindowAttributes (e.g. holding title, width, height, etc...)
 	[[nodiscard]] const WindowAttributes& GetWindowAttributes() const { return m_WindowAttributes; }

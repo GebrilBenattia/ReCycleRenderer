@@ -2,7 +2,6 @@
 
 #include <IRendererContext.hpp>
 #include <d3d11.h>
-#include <memory>
 
 #ifdef max
 #undef max // causes a redefinition error in Renderer.cpp because it's defined in a header that <d3d11> include 

@@ -64,12 +64,16 @@ void Application::Init()
 void Application::Update()
 {
 	// Loops until GLFW window has been instructed to close
-	while (!glfwWindowShouldClose(const_cast<GLFWwindow*>(m_Window->GetWindow()))) {
+	while (!glfwWindowShouldClose(m_Window->GetWindow())) {
 		// Checks if any event has been triggered (keyboard inputs, mouse events), update the window state and calls the corresponding functions (callbacks)
 		glfwPollEvents();
 
 		// Updates the renderer
 		m_Renderer->Update();
+
+		// Swaps the front and back buffers in OpenGL to display the rendered image on-screen. 
+		// This is an OpenGL-specific operation that should be adapted for Vulkan and Direct3D in a context / RHI specific function called inside the renderer update.
+		glfwSwapBuffers(m_Window->GetWindow());
 	}
 }
 

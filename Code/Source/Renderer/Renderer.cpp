@@ -56,7 +56,7 @@ void Renderer::Init(const RENDERING_CONTEXT& _ActiveContext)
 
 void Renderer::Update()
 {
-	
+	m_RHI.get()->Update();
 }
 
 void Renderer::Cleanup()

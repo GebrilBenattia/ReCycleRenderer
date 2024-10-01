@@ -2,7 +2,6 @@
 
 #include <IRendererContext.hpp>
 #include <vulkan/vulkan.h>
-#include <memory>
 
 class VulkanContext : public IRendererContext
 {

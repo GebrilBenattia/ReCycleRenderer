@@ -2,7 +2,6 @@
 
 #include <IRendererContext.hpp>
 #include <glad/glad.h>
-#include <memory>
 
 #ifdef APIENTRY
 #undef APIENTRY	// #include <glad/glad.h> include a header that defines it, so to get rid of the warning when building undef it because GLFW defines it too
