@@ -40,6 +40,9 @@ public:
 
 	// Creates a window that complies with DirectX requirements.
 	void CreateForDirectX();
+
+	// Called each time the window is supposed to resize
+	static void FramebufferResizeCallback(GLFWwindow* _Window, int _Width, int _Height);
 	
 	// Terminates the GLFW context (window destruction is handled by the std::unique_ptr custom deleter) 
 	void Destroy();

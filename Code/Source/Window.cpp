@@ -1,5 +1,6 @@
 #include <Window.hpp>
 #include <stdexcept>
+#include <glad/glad.h>
 
 Window::Window(const RENDERING_CONTEXT& _ActiveContext, const int& _Width, const int& _Height)
 	:m_Window(nullptr, glfwDestroyWindow) // Initializes with nullptr and custom deleter
@@ -53,6 +54,8 @@ void Window::CreateForOpenGL()
 
 	// Makes the newly created window's context current for OpenGL rendering commands.
 	glfwMakeContextCurrent(m_Window.get());
+
+	glfwSetFramebufferSizeCallback(m_Window.get(), FramebufferResizeCallback);
 }
 
 void Window::CreateForVulkan()
@@ -85,6 +88,11 @@ void Window::CreateForDirectX()
 		throw std::runtime_error("failed to create DirectX window");
 		glfwTerminate();
 	}
+}
+
+void Window::FramebufferResizeCallback(GLFWwindow* _Window, int _Width, int _Height)
+{
+	glViewport(0, 0, _Width, _Height);
 }
 
 void Window::Destroy()

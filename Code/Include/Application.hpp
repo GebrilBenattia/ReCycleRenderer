@@ -27,6 +27,9 @@ public:
 	// Initializes the application
 	void Init();
 
+	// Processes all the inputs callbacks of the app, TODO move in another class
+	void ProcessInputs(GLFWwindow* _Window);
+
 	// Updates the application
 	void Update();
 

@@ -1,5 +1,6 @@
 #include <OpenGLRHI.hpp>
 #include <glad/glad.h>
+#include <iostream>
 
 void OpenGLRHI::Update()
 {
