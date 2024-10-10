@@ -39,6 +39,8 @@
     <ClCompile Include="Code\Source\Contexts\Direct3D12\Direct3D12Context.cpp" />
     <ClCompile Include="Code\Source\Contexts\Direct3D12\Direct3D12RHI.cpp" />
     <ClCompile Include="Externals\Glad\glad\glad.c" />
+    <ClCompile Include="Code\Source\Contexts\OpenGL\Helpers\Temporary\OpenGLShader.cpp" />
+    <ClCompile Include="Code\Source\Contexts\OpenGL\Helpers\Temporary\OpenGLTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\Application.hpp">
@@ -60,5 +62,7 @@
     <ClInclude Include="Code\Include\Contexts\Direct3D12\Direct3D12Context.hpp" />
     <ClInclude Include="Code\Include\Contexts\Direct3D12\Direct3D12RHI.hpp" />
     <ClInclude Include="Code\Include\Contexts\Direct3D11\Direct3D11Context.hpp" />
+    <ClInclude Include="Code\Include\Contexts\OpenGL\Helpers\Temporary\OpenGLShader.hpp" />
+    <ClInclude Include="Code\Include\Contexts\OpenGL\Helpers\Temporary\OpenGLTexture.hpp" />
   </ItemGroup>
 </Project>
