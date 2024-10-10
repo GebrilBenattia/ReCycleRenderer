@@ -1,7 +1,6 @@
 #pragma once
 
 #include <IRendererContext.hpp>
-#include <vulkan/vulkan.h>
 
 class VulkanContext : public IRendererContext
 {
